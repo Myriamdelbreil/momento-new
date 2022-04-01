@@ -1,0 +1,25 @@
+// NAVBAR
+#my-trips-btn {
+  margin-right: 15px;
+  border-radius: 6px;
+  color: white;
+    &:hover {
+      border-color: white;
+    }
+}
+
+// BANNER
+.btn-homepage {
+  background-color: #1E3658;
+  color: white;
+  border-radius: 6px;
+  font-size: 20px;
+  position: relative;
+  z-index: 2;
+  min-width: 150px;
+
+  &:hover {
+    background-color: #F79F79;
+    color: white;
+   }
+}
