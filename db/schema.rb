@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_01_152753) do
+ActiveRecord::Schema.define(version: 2022_04_01_152912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 2022_04_01_152753) do
     t.index ["participant_id"], name: "index_expenses_on_participant_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "participant_id", null: false
+    t.bigint "trip_id", null: false
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["participant_id"], name: "index_messages_on_participant_id"
+    t.index ["trip_id"], name: "index_messages_on_trip_id"
+  end
+
   create_table "participants", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "trip_id", null: false
@@ -129,6 +139,8 @@ ActiveRecord::Schema.define(version: 2022_04_01_152753) do
   add_foreign_key "events", "participants"
   add_foreign_key "events", "trips"
   add_foreign_key "expenses", "participants"
+  add_foreign_key "messages", "participants"
+  add_foreign_key "messages", "trips"
   add_foreign_key "participants", "trips"
   add_foreign_key "participants", "users"
   add_foreign_key "transportations", "participants"
