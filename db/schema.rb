@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_01_152646) do
+ActiveRecord::Schema.define(version: 2022_04_01_152753) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accomodation_votes", force: :cascade do |t|
+    t.bigint "accomodation_id", null: false
+    t.bigint "participant_id", null: false
+    t.integer "vote"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["accomodation_id"], name: "index_accomodation_votes_on_accomodation_id"
+    t.index ["participant_id"], name: "index_accomodation_votes_on_participant_id"
+  end
 
   create_table "accomodations", force: :cascade do |t|
     t.bigint "trip_id", null: false
@@ -111,6 +121,8 @@ ActiveRecord::Schema.define(version: 2022_04_01_152646) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accomodation_votes", "accomodations"
+  add_foreign_key "accomodation_votes", "participants"
   add_foreign_key "accomodations", "trips"
   add_foreign_key "event_participants", "events"
   add_foreign_key "event_participants", "participants"
