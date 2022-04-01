@@ -8,3 +8,37 @@
       <%= link_to "Join us !", root_path, class: "btn btn-lg btn-homepage"  %>
   </div>
 </div>
+
+<div class="container">
+  <%# TIMELINE %>
+  <div class="home-timeline">
+    <div class="d-flex justify-content-center m-5">
+      <h1 id="timeline-title">How it works</h1>
+    </div>
+
+     <%# TIMELINE ROW 1 %>
+    <div class="row w-50 mx-auto">
+      <div class="col content-timeline-right py-5">
+        <h3>Sign up</h3>
+        <p>Create an account to join the <strong>Momenters community</strong></p>
+      </div>
+      <div class="col py-5">
+        <div class="d-flex">
+          <div class="timeline-div-arrow-left bg-grey-momento px-4 d-flex align-items-center justify-content-center my-3">
+            <div class="div-arrow-rounded rounded-circle d-flex align-items-center justify-content-center">
+              <%= image_tag "right-arrow.png", alt: "arrow", width: 20, height: 20 %>
+            </div>
+          </div>
+          <div class="card-timeline flex-grow-1" style="z-index:3;">
+            <div class="number-card-timeline d-flex align-items-center justify-content-center">
+              <h3>1</h3>
+            </div>
+            <div class="card-timeline-infos d-flex justify-content-center align-items-center">
+              <%= image_tag "signup.png", alt: "Sign up", width: 75, height: 75 %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

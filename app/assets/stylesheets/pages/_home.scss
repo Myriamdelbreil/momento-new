@@ -1,1 +1,52 @@
-// Specific CSS for your home-page
+// TIMELINE
+.home-timeline {
+  min-height: 100vh;
+}
+
+#timeline-title {
+  font-size: 40px;
+}
+
+// Rows 1,
+.content-timeline-right {
+  z-index:1;
+  border-right: 1px dashed rgba(0,0,0,0.5);
+}
+
+.timeline-div-arrow-left {
+  margin-left: -50px;
+  z-index:2;
+}
+
+.div-arrow-rounded {
+  width:30px;
+  height:30px;
+  background-color: #6AC2C8;
+}
+
+.card-timeline {
+  overflow: hidden;
+  height: 120px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  background-color: #A8DADC;
+}
+
+.number-card-timeline {
+  width: 66px;
+}
+
+.card-timeline h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.card-timeline .card-timeline-infos {
+  background-color: #F4F4F4;
+  padding: 16px;
+  height: 100%;
+  width: 80%;
+}
