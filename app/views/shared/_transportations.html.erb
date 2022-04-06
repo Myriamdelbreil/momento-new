@@ -7,3 +7,13 @@
   <%= f.input :price, label:"Prix", placeholder:"100 €" %>
   <%= f.submit "Let's go" %>
 <% end %>
+
+<%= simple_form_for [@transportations.first] do |f| %>
+  <%= f.input :origin, placeholder:"Paris, Gare de Lyon,...", label:"From..." %>
+  <%= f.input :destination, placeholder:"Madrid, London Heathrow,...", label:"To..." %>
+  <%= f.input :departure_date, label:"Departure" %>
+  <%= f.input :arrival_date, label:"Arrival" %>
+  <%= f.input :mean, label:"Avion, train, voiture?", as: :select, collection: Transportation::CATEGORIES %>
+  <%= f.input :price, label:"Prix", placeholder:"100 €" %>
+  <%= f.submit "Let's go" %>
+<% end %>

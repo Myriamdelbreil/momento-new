@@ -6,7 +6,7 @@ class TransportationsController < ApplicationController
   end
 
   def create
-    @participant =  Participant.find_by(user_id: current_user.id)
+    @participant = Participant.find_by(user_id: current_user.id)
     @trip = @participant.trip
     @new_transportation = Transportation.new(transportations_params)
     @new_transportation.participant = @participant
@@ -15,6 +15,12 @@ class TransportationsController < ApplicationController
     else
       redirect_to trip_path(@participant.trip), alert: "Your ticket hasn't been added... Please retry"
     end
+  end
+
+  def update
+    @transportation = Transportation.find(params[:id])
+    @transportation.update(transportations_params)
+    redirect_to trip_path(@transportation.participant.trip)
   end
 
   private
