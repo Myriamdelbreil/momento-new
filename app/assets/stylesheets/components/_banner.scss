@@ -20,6 +20,7 @@
   padding: 20px;
 }
 
+
 .img-banner {
   z-index: 1;
   position: absolute;
@@ -29,4 +30,15 @@
   object-position: center;
   top: 0px;
   left: 0px;
+}
+
+// iphone
+@media (max-width: 480px) {
+  #banner-description {
+    display: none;
+  }
+
+  #banner-title {
+    font-size: 40px;
+  }
 }
