@@ -23,6 +23,7 @@ class TransportationsController < ApplicationController
     redirect_to trip_path(@transportation.participant.trip)
   end
 
+
   private
 
   def transportations_params
