@@ -4,7 +4,10 @@
       <%= image_tag "Logo.png", style: "height: 50px;" %>
     <% end %>
     <div class="d-flex">
-        <%= link_to "My trips", root_path, class: "btn", id: "my-trips-btn" %>
+      <% if user_signed_in? %>
+        <%= link_to "My trips", trips_path, class: "btn", id: "my-trips-btn" %>
+      <% end %>
+      <%= render 'shared/avatar' %>
     </div>
   </div>
 </nav>

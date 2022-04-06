@@ -1,0 +1,94 @@
+.tripsIndexBanner {
+  margin-bottom: 20px;
+  padding-top: 10vh;
+  background-size: cover;
+  background-position: center;
+  height: 45vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.pixabay.com/photo/2020/02/16/07/55/beach-4852830_1280.jpg);
+  button {
+    height: auto;
+    width: 20%;
+    padding: 8px 24px;
+    border-radius: 6px;
+    background-color: #A6DADE;
+    border: none;
+    transition: transform 0.2s;
+    box-shadow: none;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+  .buttonPlacer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  #indexBannerTitle {
+    margin: 5%;
+    margin-bottom: 50px;
+    color: white;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-size: 32px;
+    font-weight: bold;
+  }
+}
+
+//nav-link
+.indexNav {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.nav-tabs {
+  width: 30%;
+  justify-content: space-between;
+  align-self: center;
+  border: none;
+  margin-bottom: 20px;
+    .nav-link {
+      width: auto;
+      color: #F79F79;
+      border: 1px solid #F79F79;
+      background: none;
+      border-radius: 3px;
+    }
+    .nav-link.active {
+      color: white;
+      background-color: #F79F79;
+    }
+    .nav-link:focus {
+      color: white;
+      background-color: #F79F79;
+    }
+    .nav-link:hover {
+      border-color: #F79F79;
+    }
+}
+// Pour iphone
+
+@media (max-width:600px) {
+  .tripsIndexBanner {
+    height: 60vh;
+    button {
+      width: 50%;
+    }
+    h1 {
+      margin-top: 10vh;
+    }
+  }
+  .nav-tabs {
+    width: 80%;
+    font-size: small;
+  }
+}
+
+@media (min-width:601px) and (max-width:1100px) {
+  .nav-tabs {
+    width: 50%;
+    font-size: small;
+  }
+}

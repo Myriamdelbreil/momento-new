@@ -1,0 +1,43 @@
+<!-- Modal new-->
+
+<div class="modal fade" id="newTrip" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="newTripLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="position-relative" style="z-index: 2;">
+        <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close" style="top: 15px; right: 15px;"></button>
+      </div>
+        <div class="modal-body py-5">
+          <div class="container">
+            <div class="d-flex w-100 align-items-center">
+              <h4 class="text-center mb-4 highlight-title mx-auto" id="ModalExpensesCreateLabel">ADD A JOURNEY</h4>
+            </div>
+          <%= simple_form_for [@user, @trip], url: trips_path, method: :post do |f| %>
+            <div class="d-flex justify-content-between">
+              <div class="inline-question">
+                <%= f.input :title %>
+              </div>
+              <div class="inline-question">
+                 <%= f.input :city,
+                  input_html: { data: { geocoder_target: "address" }, placeholder:"Paris Orly, Gare Bordeaux Saint Jean, 56 rue de la Chine 75020 Paris", class: "d-none" },
+                  wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], geocoder_placeholder_value:"City, Country,..." } }, label: false%>
+              </div>
+            </div>
+            <%= f.input :description %>
+            <div class="d-flex justify-content-between">
+              <div class="inline-question">
+                <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+              </div>
+              <div class="inline-question">
+                <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+              </div>
+            </div>
+            <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            <div class="text-center mt-3">
+              <%= f.submit "Start planning!", class: "btn btn-lg btn-homepage" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
