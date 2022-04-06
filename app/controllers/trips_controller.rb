@@ -10,28 +10,28 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @participants = @trip.participants
+    @participant = @participants.find_by(user: current_user)
     # relatif aux transports
-    @transportations = @trip.transportations
+    @transportations = @participant.transportations
     @new_transportation = Transportation.new
     # relatif aux accomodations
     @accomodations = @trip.accomodations
     @new_accomodation = Accomodation.new
-    @markers = @accomodations.geocoded.map do |accomodation|
-      {
-        lat: accomodation.latitude,
-        lng: accomodation.longitude,
-        # info_window: render_to_string(partial: "info_window", locals: { accomodations: accomodation }),
-        # image_url: helpers.asset_url("emplacement.png")
-      }
-    end
+    # @markers = @accomodations.geocoded.map do |accomodation|
+    #   {
+    #     lat: accomodation.latitude,
+    #     lng: accomodation.longitude,
+    #     # info_window: render_to_string(partial: "info_window", locals: { accomodations: accomodation }),
+    #     # image_url: helpers.asset_url("emplacement.png")
+    #   }
+    # end
     @new_accomodation_vote = AccomodationVote.new
     @accomodations.each do |accomodation|
       @accomodation_vote = accomodation.accomodation_votes
     end
     # relatif aux amis
     @users = User.all
-    @participants = @trip.participants
-    @participant = @participants.find_by(user: current_user)
     @new_participant = Participant.new
     # relatif aux dépenses : à faire
     # relatif aux messages :
@@ -68,6 +68,12 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id])
     @trip.destroy
     redirect_to trips_path
+  end
+
+  private
+
+  def trip_params
+    params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photos)
   end
 end
 
