@@ -31,7 +31,11 @@ class TripsController < ApplicationController
       @accomodation_vote = accomodation.accomodation_votes
     end
     # relatif aux amis
-    @users = User.all
+    # if params[:query].present?
+    #   @users = User.where(email: params[:query])
+    # else
+    #   @users = User.all
+    # end
     @new_participant = Participant.new
     # relatif aux dépenses : à faire
     # relatif aux messages :

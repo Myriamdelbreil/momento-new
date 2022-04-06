@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   #test
   devise_for :users
   root to: 'pages#home'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :trips do
     resources :accomodations, only: [:index, :new, :create, :destroy]
     resources :participants, only: [:new, :create]
     resources :transportations, only: [:index]
+    get "/users", to: "pages#users", as: "users"
+
   end
   # resources :accomodation_votes, only: [:destroy]
   resources :accomodations, only: [:show, :edit, :update] do

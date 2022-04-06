@@ -7,3 +7,8 @@
 <%= transportation.origin%>
 <%= transportation.destination %>
 <% end %>
+<br>
+<% @participants.each do |participant|  %>
+<%= participant.trip_id %>
+<%= participant.user_id %><br>
+<% end %>
