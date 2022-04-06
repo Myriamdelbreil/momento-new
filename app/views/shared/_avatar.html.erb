@@ -1,0 +1,20 @@
+  <div>
+    <% unless user_signed_in? %>
+      <%= image_tag "https://res.cloudinary.com/dyqby7tbh/image/upload/v1646667807/placeholder_user_f6tjii.png", class:"avatar", id:"navbarDarkDropdown",
+      data: { bs_toggle: "dropdown"}, aria:{ haspopup:true, expanded:false } %>
+    <% else %>
+      <%= image_tag "https://res.cloudinary.com/dyqby7tbh/image/upload/v1646667807/placeholder_user_f6tjii.png", class:"avatar", id:"navbarDropdown", aria:{ haspopup:true, expanded:false }, data: { bs_toggle: "dropdown"} %>
+    <% end %>
+    <div class="dropdown-menu dropdown-menu-end dropdown-menu-light" id="dropdown-menu-avatar" aria-labelledby="navbarDropdown">
+        <% unless user_signed_in? %>
+          <%= link_to "Sign in", new_user_session_path, class:"dropdown-item", id:"dropdown-item-avatar"%>
+        <% else %>
+          <%= link_to "My trips", trips_path, class: "dropdown-item", id:"dropdown-item-avatar" %>
+          <a type="button" class="dropdown-item" id="dropdown-item-avatar" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            New trip ...
+          </a>
+          <%= link_to "Edit account", edit_user_registration_path, class:"dropdown-item", id:"dropdown-item-avatar" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"dropdown-item", id:"dropdown-item-avatar" %>
+        <% end%>
+    </div>
+  </div>
