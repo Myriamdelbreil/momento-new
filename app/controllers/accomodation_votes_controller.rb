@@ -1,0 +1,2 @@
+class AccomodationVotesController < ApplicationController
+end
