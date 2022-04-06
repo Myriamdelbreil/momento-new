@@ -9,3 +9,5 @@ class TripsController < ApplicationController
     @past_trips = @trips.select {|trip| trip.start_date < Time.now}
   end
 end
+
+#test
