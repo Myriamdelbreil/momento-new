@@ -33,14 +33,17 @@ class TripsController < ApplicationController
     # relatif aux amis
     @users = User.all
     @new_participant = Participant.new
-    # relatif aux dépenses : à faire
+    # relatif aux dépenses :
+    # à faire
     # relatif aux messages :
     @messages = @trip.messages
     # relatifs à l'agenda
+    @new_event = Event.new
     @events = @trip.events
-    @event = Event.new
-    @event_participants = @event.event_participants
-    @event_participant = EventParticipant.new
+    @new_event_participant = EventParticipant.new
+    @events.each do |event|
+      @event_participants = event.event_participants
+    end
   end
 
   def create

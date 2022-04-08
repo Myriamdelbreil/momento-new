@@ -5,7 +5,7 @@ class EventsController < ApplicationController
   end
 
   def new
-    @new_event = Event.new()
+    @new_event = Event.new
     @trip = Trip.find(params[:trip_id])
     @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
   end

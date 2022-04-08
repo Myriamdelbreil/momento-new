@@ -1,0 +1,9 @@
+<div class="container">
+  <%= simple_form_for(@new_event) do |f| %>
+    <%= f.input :description %>
+    <%= f.input :start_date %>
+    <%= f.input :end_date %>
+    <%= f.input :category, as: :select, collection: Event::ACTIVITIES %>
+    <%= f.submit %>
+  <% end %>
+</div>
