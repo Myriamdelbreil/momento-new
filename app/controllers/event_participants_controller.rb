@@ -1,5 +1,7 @@
 class EventParticipantsController < ApplicationController
   def index
+    @event = Event.find(params[:event_id])
+    @event_participants = @event.event_participants
   end
 
   def create
@@ -14,5 +16,9 @@ class EventParticipantsController < ApplicationController
   end
 
   def destroy
+    @event_participant = EventParticipant.find(params[:id])
+    @event = @event_participant.event
+    @event_participant.destroy
+    redirect_to trip_path(@event.trip)
   end
 end
