@@ -1,19 +1,19 @@
 class TransportationsController < ApplicationController
   def index
     @trip = Trip.find(params[:id])
-    @participant = current_user.participant
+    @participant = articipant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @transportations = @participant.transportations
   end
 
   def create
-    @participant = Participant.find_by(user_id: current_user.id)
-    @trip = @participant.trip
+    @trip = Trip.find(params[:id])
+    @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @new_transportation = Transportation.new(transportations_params)
     @new_transportation.participant = @participant
     if @new_transportation.save
-      redirect_to trip_path(@participant.trip), notice: "Your ticket has been added!"
+      redirect_to trip_path(@trip), notice: "Your ticket has been added!"
     else
-      redirect_to trip_path(@participant.trip), alert: "Your ticket hasn't been added... Please retry"
+      redirect_to trip_path(@trip), alert: "Your ticket hasn't been added... Please retry"
     end
   end
 
