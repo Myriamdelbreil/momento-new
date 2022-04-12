@@ -1,7 +1,7 @@
 class Transportation < ApplicationRecord
   belongs_to :participant
   CATEGORIES = ['bus', 'train', 'plane', 'car', 'various', 'other']
-  validates :mean, inclusion: { in: CATEGORIES }
+  validates :mean, inclusion: { in: CATEGORIES }, presence: true
   validates :origin, :destination, presence: true
   validates :arrival_date, :departure_date, presence: true
   # geocoded_by :origin
