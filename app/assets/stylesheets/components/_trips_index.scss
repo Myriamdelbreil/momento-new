@@ -37,6 +37,112 @@
   }
 }
 
+// when no trip
+
+.noComingTrip {
+  text-align: center;
+  margin-top: 20px;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.04);
+    .roundPlus {
+      border: 2px solid rgba(0,0,0,1);
+    }
+  }
+}
+
+.roundPlus {
+  border: 2px solid rgba(0,0,0,0.2);
+  border-radius: 50%;
+  width: 60px;
+  border-radius: 50%;
+  height: 60px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noPastTrip {
+  text-align: center;
+  margin-top: 20px;
+}
+
+
+// trip index card
+
+.tripCard {
+  border-radius: 18px;
+  background   : #F3F5FF;
+  box-shadow   : 2px 2px 5px rgba(0, 0, 0, 0.4);
+  cursor       : pointer;
+  transition   : transform 0.4s;
+  height: 230px;
+  background-position: center;
+  background-size: cover;
+  width: 30%;
+}
+
+.tripCardTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100%;
+  text-align: center;
+  color: black;
+  h1 {
+    text-decoration: none!important;
+  }
+}
+
+// tripCard hover
+.tripCard:hover {
+  transform : scale(1.03);
+  transform: translateY(-10px);
+  border-radius: 20px;
+  .tripCardTitle {
+    display: none;
+  }
+  .tripCardDetails {
+    display: block;
+  }
+  .dropdownBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+      margin: 0px;
+      align-items: center;
+    }
+  }
+}
+
+.tripCardDetails {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.4);
+  height: 100%;
+  color: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  position: relative;
+}
+.tripCardDetailsDates {
+  margin-bottom: 20px;
+}
+.tripCardDetailsTitle {
+  height: 25%;
+  overflow: hidden;
+}
+.tripCardDetailsDescription {
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  height: 26%;
+  text-overflow: ellipsis;
+}
+
+
 //nav-link
 .indexNav {
   display: flex;
@@ -83,6 +189,11 @@
   .nav-tabs {
     width: 80%;
     font-size: small;
+  }
+
+  .roundPlus {
+    height: 40px;
+    width: 40px;
   }
 }
 
