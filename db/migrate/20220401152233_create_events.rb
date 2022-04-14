@@ -3,8 +3,8 @@ class CreateEvents < ActiveRecord::Migration[6.1]
     create_table :events do |t|
       t.references :participant, null: false, foreign_key: true
       t.references :trip, null: false, foreign_key: true
-      t.string :description
-      t.string :start_date
+      t.datetime :description
+      t.datetime :start_date
       t.string :end_date
       t.string :category
 

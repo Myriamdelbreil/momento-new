@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_10_223259) do
+ActiveRecord::Schema.define(version: 2022_04_14_132144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -81,8 +81,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_223259) do
   create_table "events", force: :cascade do |t|
     t.bigint "participant_id", null: false
     t.bigint "trip_id", null: false
-    t.string "description"
-    t.string "start_date"
+    t.datetime "description"
+    t.datetime "start_date"
     t.string "end_date"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2022_04_10_223259) do
     t.boolean "mutual"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "expense_date"
     t.index ["participant_id"], name: "index_expenses_on_participant_id"
   end
 
@@ -126,8 +127,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_223259) do
     t.string "origin"
     t.string "destination"
     t.string "mean"
-    t.string "departure_date"
-    t.string "arrival_date"
+    t.datetime "departure_date"
+    t.datetime "arrival_date"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
@@ -137,8 +138,8 @@ ActiveRecord::Schema.define(version: 2022_04_10_223259) do
 
   create_table "trips", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "start_date"
-    t.string "end_date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string "title"
     t.text "description"
     t.string "city"
