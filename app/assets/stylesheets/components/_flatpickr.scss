@@ -1,0 +1,39 @@
+.flatpickr-months{
+  background: #F69F79;
+  border-radius: 6px 6px 0px 0px;
+}
+
+.flatpickr-innerContainer{
+  .flatpickr-weekdaycontainer{
+    .flatpickr-weekday{
+      color: #1E3658;
+    }
+  }
+  .flatpickr-days{
+    .dayContainer{
+      border-radius: 0px 0px 6px 6px;
+      .flatpickr-day.prevMonthDay, .flatpickr-day.nextMonthDay{
+        color: rgba(57,57,57,0.3);
+        &:hover{
+          background-color: #f9d1c0;
+        }
+      }
+      .flatpickr-day{
+        color: #1E3658;
+      }
+      .flatpickr-day:hover{
+        background-color: #F69F79;
+        border: none;
+      }
+
+      .flatpickr-day.today{
+        border-color: #1E3658;
+      }
+
+      .flatpickr-day.startRange, .flatpickr-day.endRange {
+        background-color: #F69F79;
+        border: none;
+      }
+    }
+  }
+}
