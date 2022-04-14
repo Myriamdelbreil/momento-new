@@ -13,6 +13,7 @@
 <div>
 
 <!-- >To put in a Partial </!-->
+<div class="container">
   <nav class="indexNav">
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <button class="nav-link active w-30" id="coming-tab" data-bs-toggle="tab" data-bs-target="#coming" type="button" role="tab" aria-controls="coming" aria-selected="true">Your coming trips</button>
@@ -21,10 +22,53 @@
   </nav>
   <div id="nav-tab" class="tab-content">
     <div class="tab-pane fade show active" id="coming" role="tabpanel" aria-labelledby="coming-tab">
-      <h1>First tab</h1>
+      <% if @coming_trips.empty? %>
+        <div class="noComingTrip" type= "button" data-bs-toggle="modal" data-bs-target="#newTrip">
+          <h1>Plan your next trip now!</h1>
+          <h1 class="roundPlus">+</h1>
+        </div>
+      <%else%>
+        <% @coming_trips.each do |trip| %>
+          <% if trip.photo.empty?%>
+            <% trip_photo = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beach-quotes-1559667853.jpg"%>
+          <% else %>
+            <% trip_photo = cl_image_tag(trip.photo.key)%>
+          <% end %>
+          <div class="tripCard" style="background-image:url(<%=trip_photo%>)">
+            <%= link_to trip_path(trip) do %>
+            <div class="tripCardTitle">
+              <h1><%= trip.title %></h1>
+            </div>
+            <div class="tripCardDetails">
+              <div class="tripCardDetailsDate">
+               placeholder
+              </div>
+              <div class="tripCardDetailsTitle">
+                <h1><%= trip.title %></h1>
+              </div>
+              <div class="tripCardDetailsCity">
+                <h4>placeholder</h4>
+              </div>
+              <div class="tripCardDetailsDescription">
+                <p><%= trip.description %></p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
     <div class="tab-pane fade" id="past" role="tabpanel" aria-labelledby="past-tab">
-      <h1>Second tab</h1>
+      <% if @past_trips.empty? %>
+        <div class="noPastTrip">
+          <h1>The best is yet to come!</h1>
+        </div>
+      <% else %>
+        <div class="tripCard">
+          <% @past_trips.each do |trip| %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

@@ -51,8 +51,8 @@ class TripsController < ApplicationController
     @user = current_user
     @new_trip.user = @user
     if @new_trip.save
-      @participant = Participant.create!(user: @user, trip: @trip)
-      redirect_to trip_path(@trip)
+      @participant = Participant.create!(user: @user, trip: @new_trip)
+      redirect_to trip_path(@new_trip)
     else
       render "trips/index", alert: "Your trip couldn't have been created, sorry ! Try again"
     end
