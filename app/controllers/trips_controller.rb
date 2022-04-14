@@ -6,6 +6,14 @@ class TripsController < ApplicationController
     @participant = Participant.new
     @coming_trips = @trips.select {|trip| trip.start_date > Time.now}
     @past_trips = @trips.select {|trip| trip.start_date < Time.now}
+    unless @trips == []
+      @markers = @trips.geocoded.map do |trip|
+        {
+          lat: trip.latitude,
+          lng: trip.longitude
+        }
+      end
+    end
   end
 
   def show
@@ -79,5 +87,3 @@ class TripsController < ApplicationController
     params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photo)
   end
 end
-
-#test
