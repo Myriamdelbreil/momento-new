@@ -7,6 +7,14 @@ class TripsController < ApplicationController
     @coming_trips = @trips.select { |trip| trip.start_date > Time.now && trip.end_date > Time.now }
     @past_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date < Time.now}
     @current_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date > Time.now }
+    unless @trips == []
+      @markers = @trips.geocoded.map do |trip|
+        {
+          lat: trip.latitude,
+          lng: trip.longitude
+        }
+      end
+    end
   end
 
   def show
@@ -51,7 +59,7 @@ class TripsController < ApplicationController
     @new_trip = Trip.new(trip_params)
     @user = current_user
     @new_trip.user = @user
-    if @new_trip.save
+    if @new_trip.save!
       @participant = Participant.create!(user: @user, trip: @new_trip)
       redirect_to trip_path(@new_trip)
     else
@@ -77,8 +85,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photo)
+    params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photo, :longitude, :latitude)
   end
 end
-
-#test

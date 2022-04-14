@@ -6,8 +6,8 @@ class CreateTransportations < ActiveRecord::Migration[6.1]
       t.string :origin
       t.string :destination
       t.string :type
-      t.string :departure_date
-      t.string :arrival_date
+      t.datetime :departure_date
+      t.datetime :arrival_date
       t.float :latitude
       t.float :longitude
 

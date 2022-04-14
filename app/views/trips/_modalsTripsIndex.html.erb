@@ -18,17 +18,19 @@
               </div>
               <div class="inline-question">
                  <%= f.input :city,
-                  input_html: { data: { geocoder_target: "address" }, placeholder:"Paris Orly, Gare Bordeaux Saint Jean, 56 rue de la Chine 75020 Paris", class: "d-none" },
+                  input_html: { data: { geocoder_target: "city" }, placeholder:"Paris Orly, Gare Bordeaux Saint Jean, 56 rue de la Chine 75020 Paris" }, class:"d-none",
                   wrapper_html: { data: { controller: "geocoder", geocoder_api_key_value: ENV['MAPBOX_API_KEY'], geocoder_placeholder_value:"City, Country,..." } }, label: false%>
+                  <%= hidden_field_tag :latitude, nil, data: { geocoder_target: "latitude" } %>
+                  <%= hidden_field_tag :longitude, nil, data: { geocoder_target: "longitude" } %>
               </div>
             </div>
             <%= f.input :description %>
             <div class="d-flex justify-content-between">
               <div class="inline-question">
-                <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+                <%= f.input :start_date, as: :string, required: false, input_html: {id: "range_start"} %>
               </div>
               <div class="inline-question">
-                <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+                <%= f.input :end_date, as: :string, required: false, input_html: {id: "range_end"} %>
               </div>
             </div>
             <%= f.input :photo, as: :file%>
