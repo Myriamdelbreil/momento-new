@@ -105,10 +105,18 @@
   justify-content: space-around;
   height: 100%;
   text-align: center;
-  color: black;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   h1 {
     text-decoration: none!important;
   }
+}
+
+.tripCardPhoto {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.192);
+  border-radius: 5px;
+  object-fit: cover;
+  width: 100%
 }
 
 // tripCard hover
@@ -148,6 +156,7 @@
 .tripCardDetailsTitle {
   height: 25%;
   overflow: hidden;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 .tripCardDetailsDescription {
   overflow: hidden;

@@ -30,19 +30,19 @@
       <%else%>
         <div class="tripList">
           <% @coming_trips.each do |trip| %>
-            <% if trip.photo.empty?%>
+            <% unless trip.photo.attached?%>
               <% trip_photo = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beach-quotes-1559667853.jpg"%>
             <% else %>
-              <% trip_photo = cl_image_tag(trip.photo.key)%>
+              <% trip_photo = cloudinary_url trip.photo.key%>
             <% end %>
-            <div class="tripCard" style="background-image:url(<%=trip_photo%>)">
+            <div class="tripCard" style='background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=trip_photo%>)'>
               <%= link_to trip_path(trip) do %>
               <div class="tripCardTitle">
                 <h1><%= trip.title %></h1>
               </div>
               <div class="tripCardDetails">
                 <div class="tripCardDetailsDate">
-                placeholder
+                  placeholder
                 </div>
                 <div class="tripCardDetailsTitle">
                   <h1><%= trip.title %></h1>
