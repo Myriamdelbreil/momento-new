@@ -66,8 +66,34 @@
           <h1>The best is yet to come!</h1>
         </div>
       <% else %>
-        <div class="tripCard">
+        <div class="tripList">
           <% @past_trips.each do |trip| %>
+            <% unless trip.photo.attached?%>
+              <% trip_photo = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beach-quotes-1559667853.jpg"%>
+            <% else %>
+              <% trip_photo = cloudinary_url trip.photo.key%>
+            <% end %>
+            <div class="tripCard" style='background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=trip_photo%>)'>
+              <%= link_to trip_path(trip) do %>
+              <div class="tripCardTitle">
+                <h1><%= trip.title %></h1>
+              </div>
+              <div class="tripCardDetails">
+                <div class="tripCardDetailsDate">
+                  placeholder
+                </div>
+                <div class="tripCardDetailsTitle">
+                  <h1><%= trip.title %></h1>
+                </div>
+                <div class="tripCardDetailsCity">
+                  <h4>placeholder</h4>
+                </div>
+                <div class="tripCardDetailsDescription">
+                  <p><%= trip.description %></p>
+                </div>
+              </div>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <% end %>
