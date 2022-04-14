@@ -3,14 +3,20 @@
   padding-top: 10vh;
   background-size: cover;
   background-position: center;
-  height: 45vh;
+  height: 50vh;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://cdn.pixabay.com/photo/2020/02/16/07/55/beach-4852830_1280.jpg);
+
+  .buttonPlacer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
   button {
     height: auto;
     width: 20%;
     padding: 8px 24px;
     border-radius: 6px;
-    background-color: #A6DADE;
     border: none;
     transition: transform 0.2s;
     box-shadow: none;
@@ -18,11 +24,19 @@
       transform: scale(1.05);
     }
   }
-  .buttonPlacer {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+
+  .nextJourneyButton {
+    background-color: #A6DADE;
   }
+
+  .currentTripsButton {
+    background-color: #a6dea7;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+  }
+
   #indexBannerTitle {
     margin: 5%;
     margin-bottom: 50px;
@@ -46,12 +60,28 @@
   grid-auto-columns: minmax(30%, 30%);
   overflow-x: auto;
 }
+
+.tripListModal {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2em;
+  padding: 20px 0px;
+  grid-auto-columns: minmax(50%, 50%);
+  overflow-x: auto;
+}
+
 @media (max-width: 768px) {
   .tripList {
     grid-gap: 1em;
     grid-auto-columns: minmax(80%, 80%);
   }
+  .tripListModal {
+    grid-gap: 0.3em;
+    grid-auto-columns: minmax(90%, 90%);
+  }
 }
+
 // when no trip
 
 .noComingTrip {

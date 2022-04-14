@@ -41,3 +41,48 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="currentTrips" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="currentTrips" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content">
+      <div class="position-relative" style="z-index: 2;">
+        <button type="button" class="btn-close position-absolute" data-bs-dismiss="modal" aria-label="Close" style="top: 15px; right: 15px;"></button>
+      </div>
+      <div class="modal-body py-5">
+          <div class="d-flex w-100 align-items-center">
+            <h4 class="text-center mb-4 highlight-title mx-auto" id="ModalExpensesCreateLabel">YOUR CURRENT TRIPS</h4>
+          </div>
+        <div class="tripListModal">
+          <% @current_trips.each do |trip| %>
+            <% unless trip.photo.attached?%>
+              <% trip_photo = "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/beach-quotes-1559667853.jpg"%>
+            <% else %>
+              <% trip_photo = cloudinary_url trip.photo.key%>
+            <% end %>
+            <div class="tripCard" style='background-image:linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%=trip_photo%>)'>
+              <%= link_to trip_path(trip) do %>
+              <div class="tripCardTitle">
+                <h1><%= trip.title %></h1>
+              </div>
+              <div class="tripCardDetails">
+                <div class="tripCardDetailsDate">
+                  placeholder
+                </div>
+                <div class="tripCardDetailsTitle">
+                  <h1><%= trip.title %></h1>
+                </div>
+                <div class="tripCardDetailsCity">
+                  <h4>placeholder</h4>
+                </div>
+                <div class="tripCardDetailsDescription">
+                  <p><%= trip.description %></p>
+                </div>
+              </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
