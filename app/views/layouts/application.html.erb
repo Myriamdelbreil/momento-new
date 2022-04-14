@@ -18,8 +18,12 @@
     <div class="content-wrapper">
       <%= yield %>
     </div>
-     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+
+    <% if notice != nil %>
+      <p class="notice"><%= notice %></p>
+    <% elsif alert != nil %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
 
   </body>
 </html>
