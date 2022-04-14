@@ -37,6 +37,21 @@
   }
 }
 
+.tripList {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 2em;
+  padding: 20px 0px;
+  grid-auto-columns: minmax(30%, 30%);
+  overflow-x: auto;
+}
+@media (max-width: 768px) {
+  .tripList {
+    grid-gap: 1em;
+    grid-auto-columns: minmax(80%, 80%);
+  }
+}
 // when no trip
 
 .noComingTrip {
@@ -80,8 +95,9 @@
   height: 230px;
   background-position: center;
   background-size: cover;
-  width: 30%;
+  margin: 0px 20px;
 }
+
 
 .tripCardTitle {
   display: flex;
@@ -97,8 +113,7 @@
 
 // tripCard hover
 .tripCard:hover {
-  transform : scale(1.03);
-  transform: translateY(-10px);
+  transform: translateY(-10px) scale(1.03);
   border-radius: 20px;
   .tripCardTitle {
     display: none;
