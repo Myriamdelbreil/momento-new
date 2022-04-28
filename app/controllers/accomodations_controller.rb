@@ -14,7 +14,7 @@ class AccomodationsController < ApplicationController
   end
 
   def create
-    @new_accomodation = Accomodation.new(accomodation_params)
+    @new_accomodation = Accomodation.new(accomodations_params)
     @new_accomodation.trip = @trip
     @participant = Participant.find_by(user: current_user, trip: @trip)
     if @new_accomodation.save
