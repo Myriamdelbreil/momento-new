@@ -1,0 +1,35 @@
+// for the geocoder of the simpleforms
+
+.mapboxgl-ctrl-geocoder--icon {
+  display: none;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0E0000;
+  background-color: #F4F4F4;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  appearance: none;
+  border-radius: 2px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.mapboxgl-ctrl-geocoder--button{
+  display: none;
+}
+
+#trip_city {
+  display: none;
+}
+
+@media (max-width:600px) {
+  .inline-question {
+    margin: 5px;
+  }
+}
