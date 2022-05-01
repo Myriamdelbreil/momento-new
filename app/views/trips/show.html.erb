@@ -19,34 +19,3 @@
   <div class="dashboardBox boxPhotos">
   </div>
 </div>
-
-<div class="container">
-  <p>list des transports</p>
-  <% @transportations.each_with_index do |transportation, i| %>
-  <%= i + 1 %>
-  <%= transportation.origin%>
-  <%= transportation.destination %>
-  <% end %>
-
-
-  <div class="container">
-    <p>Form new event</p>
-    <%= simple_form_for [@trip, @new_event] do |f| %>
-      <%= f.input :description %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
-      <%= f.input :category, as: :select, collection: Event::ACTIVITIES %>
-      <%= f.submit %>
-    <% end %>
-  </div>
-
-  <p>list des events</p>
-  <% @events.each_with_index do |event, i| %>
-    <%= i + 1%>
-    <%= event.description %>
-    <%= event.start_date %>
-    <%= event.end_date %>
-    <%= event.category %>
-    <%= link_to "edit event", edit_event_path(event) %>
-  <% end %>
-</div>
