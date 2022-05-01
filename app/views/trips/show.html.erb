@@ -3,19 +3,58 @@
   </div>
   <div class="dashboardBox boxTransportations">
     <p id="titleCardTransportations">Transportation</p>
+    <% if @transportations.empty? %>
+      <p>Add your ticket !</p>
+    <% else %>
+      <p>See your next journey</p>
+    <% end %>
   </div>
   <div class="dashboardBox boxAccomodations">
     <p id="titleCardAccomodations">Accomodations</p>
+    <p>You have <%= @accomodations.all.count %> accomodations in your wish list.</p>
+    <% if @accomodations.empty? %>
+      <p>Add one !</p>
+    <% else %>
+      <% @accomodations.each do |accomodation| %>
+        <% if accomodation.confirmed? %>
+          <p>Congrats you have chosen your place to stay !</p>
+          <%= accomodation.title %>
+          <%= accomodation.address %>
+        <% end %>
+      <p>Add one or see your wishlist.</p>
+      <% end %>
+    <% end %>
   </div>
   <div class="dashboardBox boxExpenses">
     <p id="titleCardExpenses">Expenses</p>
   </div>
   <div class="dashboardBox boxPeople">
     <p id="titleCardPeople">Friends</p>
+    <% if @participants.count < 2 %>
+      <p>You haven't invited anyone yet. Invite some friends!</p>
+    <% else %>
+      <p>See the list of the friends you're travelling with or add some to your dashboard</p>
+    <% end %>
   </div>
   <div class="dashboardBox boxEvents">
     <p id="titleCardEvents">Activities</p>
+    <% if @events.empty? %>
+      <p>You haven't planned anything yet. Start !</p>
+    <% else %>
+      <% @events.each do |event| %>
+        <%= event.description %>
+        <%= event.category %>
+        <%= event.start_date %>
+        <%= event.end_date %>
+      <% end %>
+    <% end %>
   </div>
   <div class="dashboardBox boxPhotos">
+    <% if @trip.photo.attached? %>
+      <p>Afficher les photos lol</p>
+      <p>See the photos</p>
+    <% else %>
+      <p>Add some photos </p>
+    <% end %>
   </div>
 </div>
