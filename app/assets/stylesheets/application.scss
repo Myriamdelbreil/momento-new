@@ -13,3 +13,12 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+:root {
+  --expenses: #50587C;
+  --people: #B64D6B;
+  --accomodations: #F2B440;
+  --events: #42ABB3;
+  --transportations: #568A75;
+}
