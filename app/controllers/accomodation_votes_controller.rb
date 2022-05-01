@@ -18,3 +18,5 @@ class AccomodationVotesController < ApplicationController
     redirect_to trip_path(@accomodation.trip)
   end
 end
+
+# test
