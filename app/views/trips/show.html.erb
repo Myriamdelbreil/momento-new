@@ -1,59 +1,21 @@
-
-
-<div class="container">
-  <p>list des transports</p>
-  <% @transportations.each_with_index do |transportation, i| %>
-    <%= i + 1 %>
-    <%= transportation.origin%>
-    <%= transportation.destination %>
-  <% end %>
-
-
-  <div class="container">
-    <p>Form new event</p>
-    <%= simple_form_for [@trip, @new_event] do |f| %>
-      <%= f.input :description, as: :string %>
-      <%= f.input :start_date %>
-      <%= f.input :end_date %>
-      <%= f.input :category, as: :select, collection: Event::ACTIVITIES %>
-      <%= f.submit %>
-    <% end %>
+<div class="dashboardMain">
+  <div class="dashboardBox boxInfo">
   </div>
-
-  <p>list des events</p>
-  <% @events.each_with_index do |event, i| %>
-    <%= i + 1%>
-    <%= event.description %>
-    <%= event.start_date %>
-    <%= event.end_date %>
-    <%= event.category %>
-    <%= link_to "edit event", edit_event_path(event) %>
-  <% end %>
-</div>
-
-  <div class="container">
-    <p>Form new Accomodation</p>
-    <%= simple_form_for [@trip, @new_accomodation] do |f| %>
-      <%= f.input :img, as: :string %>
-      <%= f.input :title, as: :string %>
-      <%= f.input :description, as: :text %>
-      <%= f.input :price, as: :float %>
-      <%= f.input :address, as: :string %>
-      <%= f.submit %>
-    <% end %>
+  <div class="dashboardBox boxTransportations">
+    <p id="titleCardTransportations">Transportation</p>
   </div>
-
-  <p>list des accomodations</p>
-  <% @accomodations.each_with_index do |accomodation, i| %>
-    <%= i + 1%>
-    <%= accomodation.title %>
-    <%= accomodation.description %>
-    <%= accomodation.price %>
-    <%= accomodation.address %>
-    <%# <%= image_tag "#{accomodation.img}" %>
-    <%= link_to "edit accomodation", edit_accomodation_path(accomodation) %>
-    <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" }, class:"cross d-inline" do %>
-      <i class="fas fa-times"></i>
-    <% end %>
-  <% end %>
+  <div class="dashboardBox boxAccomodations">
+    <p id="titleCardAccomodations">Accomodations</p>
+  </div>
+  <div class="dashboardBox boxExpenses">
+    <p id="titleCardExpenses">Expenses</p>
+  </div>
+  <div class="dashboardBox boxPeople">
+    <p id="titleCardPeople">Friends</p>
+  </div>
+  <div class="dashboardBox boxEvents">
+    <p id="titleCardEvents">Activities</p>
+  </div>
+  <div class="dashboardBox boxPhotos">
+  </div>
 </div>
