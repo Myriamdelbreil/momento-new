@@ -33,6 +33,9 @@
   grid-column-end: 2;
   grid-row-start: 4;
   grid-row-end: 6;
+  #titleCardTransportations {
+    color: var(--transportation)
+  }
 }
 
 .boxAccomodations {
@@ -40,6 +43,9 @@
   grid-column-end: 2;
   grid-row-start: 6;
   grid-row-end: 9;
+  #titleCardAccomodations {
+    color: var(--accomodations)
+  }
 }
 
 .boxPeople {
@@ -47,6 +53,9 @@
   grid-column-end: 3;
   grid-row-start: 7;
   grid-row-end: 9;
+  #titleCardPeople {
+    color: var(--people)
+  }
 }
 
 .boxExpenses {
@@ -55,6 +64,9 @@
   grid-row-start: 4;
   grid-row-end: 7;
   overflow: hidden;
+  #titleCardExpenses {
+    color: var(--expenses)
+  }
 }
 
 .boxPhotos {
@@ -65,73 +77,75 @@
   padding: 0;
 }
 
-.boxActivities {
+.boxEvents {
   grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 6;
+  #titleCardEvents {
+    color: var(--events);
+  }
 }
 
 @media (max-width:600px) {
   .dashboardMain {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(12, 1fr);
-    height: 100vh;
-    width: 100%;
-    padding: 20px;
-    padding-top: 45px;
-    background-color: #F3F5FF;
+    grid-template-rows: repeat(4, 1fr);
   }
+
+  .dashboardBox {
+    margin: 7px;
+  }
+
   .boxInfo {
     // grid-area: 1, 1, 3, 4;
     grid-column-start: 1;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 3; // à changer pour un grid-area en une ligne
+    grid-row-end: 2; // à changer pour un grid-area en une ligne
   }
 
   .boxTransportations {
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 
   .boxAccomodations {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 5;
-    grid-row-end: 9;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
   }
 
   .boxPeople {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 7;
-    grid-row-end: 9;
+    grid-row-start: 3;
+    grid-row-end: 4;
   }
 
   .boxExpenses {
     grid-column-start: 2;
     grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 7;
+    grid-row-start: 4;
+    grid-row-end: 5;
     overflow: hidden;
   }
 
   .boxPhotos {
     grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 11;
-    grid-row-end: 13;
+    grid-column-end: 2;
+    grid-row-start: 5;
+    grid-row-end: 4;
     padding: 0;
   }
 
-  .boxActivities {
+  .boxEvents {
     grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 9;
-    grid-row-end: 11;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
   }
 }
