@@ -19,11 +19,14 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+
     @participants = @trip.participants
     @participant = @participants.find_by(user: current_user)
+
     # relatif aux transports
     @transportations = @participant.transportations
     @new_transportation = Transportation.new
+
     # relatif aux accomodations
     @accomodations = @trip.accomodations
     @new_accomodation = Accomodation.new
@@ -37,13 +40,21 @@ class TripsController < ApplicationController
     # end
     @new_accomodation_vote = AccomodationVote.new
     @accomodations.each do |accomodation|
-      @accomodation_vote = accomodation.accomodation_votes
+      @accomodation_votes = accomodation.accomodation_votes
     end
+
     # relatif aux amis
     @users = User.all
     @new_participant = Participant.new
+
     # relatif aux dépenses :
-    # à faire
+    @expenses = @participant.expenses
+    @new_expense = Expense.new
+    @sum_of_mutual_expenses = Expense.includes(participant: :trip)
+                                .references(:trip)
+                                .where(trips: { id: @participant.trip }, mutual: true).sum(:amount)
+    @non_mutual_expenses = Expense.where(participant: @participant, mutual: false).references(:trip).sum(:amount)
+
     # relatif aux messages :
     @messages = @trip.messages
     # relatifs à l'agenda
