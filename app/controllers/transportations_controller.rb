@@ -23,6 +23,14 @@ class TransportationsController < ApplicationController
     redirect_to trip_path(@transportation.participant.trip)
   end
 
+  def destroy
+    @transportation = Transportation.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
+    @participant = Participant.where(user: current_user, trip: @trip)
+    @transportation.destroy
+    redirect_to trip_path(@trip)
+  end
+
 
   private
 

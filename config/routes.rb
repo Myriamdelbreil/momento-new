@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :trips do
     resources :accomodations, only: [:index, :new, :create, :destroy]
     resources :participants, only: [:create]
-    resources :transportations, only: [:index, :create]
+    resources :transportations, only: [:index, :create, :destroy, :update]
     resources :events, only: [:create]
   end
 

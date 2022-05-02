@@ -100,7 +100,11 @@
         <div class="row">
           <p>Duration: <%= ((transportation.arrival_date - transportation.departure_date)/3600).round %>h</p>
         </div>
-
+        <div class="row">
+      <%= link_to trip_transportation_path(transportation.participant.trip, transportation), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+        </div>
       </div>
     <% end %>
   <% end %>
@@ -127,6 +131,9 @@
       <p>Title: <%= accomodation.title %></p>
       <p>Address : <%= accomodation.address %></p>
       <p>Description : <%= accomodation.description %></p>
+      <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-times"></i>
+      <% end %>
     <% end %>
   <% end %>
 </div>
