@@ -82,7 +82,7 @@
 
 <div class="container">
   <h1>Show/index transportations</h1>
-  <% if @transportations.count > 1 %>
+  <% if @transportations.count > 0 %>
     <% @transportations.order('departure_date ASC').each do |transportation|  %>
       <div class="transportation-ticket col">
         <div class="row">
@@ -102,6 +102,31 @@
         </div>
 
       </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Form new accomodation</h1>
+  <%= simple_form_for [@trip, @new_accomodation] do |f| %>
+    <%= f.input :title, placeholder: "Family house", label: "Name" %>
+    <%= f.input :address, placeholder: "88 rue de Rivoli", label: "Address" %>
+    <%= f.input :price, placeholder: "300 €", label: "Price" %>
+    <%= f.input :latitude, as: :hidden, input_html: { data: { geocoder_target: "latitude" }} %>
+    <%= f.input :longitude, as: :hidden, input_html: { data: { geocoder_target: "longitude" }} %>
+    <%= f.input :img, placeholder:"https://www.familyhouse.com/.jpeg", label: "Image url" %>
+    <%= f.input :description, placeholder: "Perfect house for families", label: "Description" %>
+    <%= f.submit "Let's go" %>
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Index accomodations</h1>
+  <% if @accomodations.count > 0 %>
+    <% @accomodations.each do |accomodation|  %>
+      <p>Title: <%= accomodation.title %></p>
+      <p>Address : <%= accomodation.address %></p>
+      <p>Description : <%= accomodation.description %></p>
     <% end %>
   <% end %>
 </div>
