@@ -1,12 +1,12 @@
 class TransportationsController < ApplicationController
   def index
     @trip = Trip.find(params[:id])
-    @participant = articipant.find_by(user_id: current_user.id, trip_id: @trip.id)
-    @transportations = @participant.transportations
+    @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
+    @transportations = @participant.transportations.order('departure_date ASC')
   end
 
   def create
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(params[:trip_id])
     @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @new_transportation = Transportation.new(transportations_params)
     @new_transportation.participant = @participant

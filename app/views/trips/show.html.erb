@@ -6,6 +6,12 @@
     <% if @transportations.empty? %>
       <p>Add your ticket !</p>
     <% else %>
+      <p>You have booked <%= @transportations.count %> travel tickets.</p>
+      <% @transportations.sort_by(&:departure_date).each do |transportation| %>
+        <% if transportation.departure_date >= Time.now %>
+          <p>Your next travel to <%= transportation.destination %> is in <%= ((transportation.departure_date - Time.now)/86400).to_i %> days</p>
+        <% end %>
+      <% end %>
       <p>See your next journey</p>
     <% end %>
   </div>
@@ -57,4 +63,45 @@
       <p>Add some photos </p>
     <% end %>
   </div>
+</div>
+
+
+<div class="container">
+  <h1>Form new transportation</h1>
+  <%= simple_form_for [@trip, @new_transportation] do |f| %>
+    <%= f.input :origin, placeholder:"Paris, Gare de Lyon,...", label:"From..." %>
+    <%= f.input :destination, placeholder:"Madrid, London Heathrow,...", label:"To..." %>
+    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
+    <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
+    <%= f.input :mean, label:"Avion, train, voiture?", as: :select, collection: Transportation::CATEGORIES %>
+    <%= f.input :price, label:"Prix", placeholder:"100 €" %>
+    <%= f.submit "Let's go" %>
+  <% end %>
+  <p>Form marche</p>
+</div>
+
+<div class="container">
+  <h1>Show/index transportations</h1>
+  <% if @transportations.count > 1 %>
+    <% @transportations.order('departure_date ASC').each do |transportation|  %>
+      <div class="transportation-ticket col">
+        <div class="row">
+          <p>Departure:  <%= transportation.departure_date.strftime("%A") %> <%= transportation.departure_date.month %>, <%= transportation.departure_date.day %>, <%= transportation.departure_date.year %> at <%= transportation.departure_date.hour %> :
+          <% if transportation.departure_date.min == 0 %>
+            00
+          <% else %>
+            <%= transportation.departure_date.min %>
+          <% end %>
+          </p>
+        </div>
+        <div class="row">
+          <p><%= transportation.origin %> to <%= transportation.destination %></p>
+        </div>
+        <div class="row">
+          <p>Duration: <%= ((transportation.arrival_date - transportation.departure_date)/3600).round %>h</p>
+        </div>
+
+      </div>
+    <% end %>
+  <% end %>
 </div>
