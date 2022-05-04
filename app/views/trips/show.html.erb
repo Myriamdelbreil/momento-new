@@ -134,3 +134,33 @@
     <% end %>
   <% end %>
 </div>
+
+<div class="container">
+  <h1>Form new event</h1>
+  <%= simple_form_for [@trip, @new_event] do |f| %>
+    <%= f.input :description, placeholder: "Cooking class,...", label: "Name" %>
+    <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
+    <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
+    <%= f.input :category, as: :select, collection: Event::ACTIVITIES%>
+    <%= f.submit "Let's go" %>
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Index events</h1>
+  <% if @events.count > 0 %>
+    <% @events.each do |event|  %>
+      <p>Date: <%= event.start_date %></p>
+      <p>Category : <%= event.category %></p>
+      <p>Description : <%= event.description %></p>
+      <p>Who is coming?
+        <% event.event_participants.each do |event_participant| %>
+          <%=  event_participant.participant.user.email %>
+        <% end %>
+      </p>
+      <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
