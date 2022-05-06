@@ -181,3 +181,16 @@
     <%= f.submit "Ajouter une dépense" %>
   <% end %>
 </div>
+
+
+<div class="container">
+  <h1>Index expenses</h1>
+  <% if @my_expenses.flatten.count > 0 %>
+    <% @my_expenses.flatten.each do |expense|  %>
+      <p>Titre: <%= expense.title %></p>
+      <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <i class="fas fa-times"></i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
