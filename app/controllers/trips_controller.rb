@@ -59,11 +59,6 @@ class TripsController < ApplicationController
     @total_participant_expenses = @sum_individual_expenses + (@sum_mutual_expenses/@trip.participants.count)
     #créer une nouvelle dépense
     @new_expense = Expense.new
-    # @sum_of_mutual_expenses = Expense.includes(participant: :trip)
-    #                             .references(:trip)
-    #                             .where(trips: { id: @participant.trip }, mutual: true).sum(:amount)
-    # @non_mutual_expenses = Expense.where(participant: @participant, mutual: false).references(:trip).sum(:amount)
-
 
     # relatif aux messages :
     @messages = @trip.messages
@@ -107,6 +102,6 @@ class TripsController < ApplicationController
   private
 
   def trip_params
-    params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photo, :longitude, :latitude)
+    params.require(:trip).permit(:start_date, :end_date, :title, :description, :city, :photos, :longitude, :latitude)
   end
 end

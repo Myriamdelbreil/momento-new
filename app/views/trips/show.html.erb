@@ -42,6 +42,14 @@
       <p>You haven't invited anyone yet. Invite some friends!</p>
     <% else %>
       <p>See the list of the friends you're travelling with or add some to your dashboard</p>
+      <p>
+        <% @trip.participants.each do |participant| %>
+          <%= participant.user.email %>
+          <%= link_to participant_path(participant), method: :delete, data: { confirm: "Are you sure?" } do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+        <% end %>
+      </p>
     <% end %>
   </div>
   <div class="dashboardBox boxEvents">
@@ -58,7 +66,10 @@
     <% end %>
   </div>
   <div class="dashboardBox boxPhotos">
-    <% if @trip.photo.attached? %>
+    <% if @trip.photos.attached? %>
+      <% @trip.photos.each do |photo| %>
+        <%= cl_image_tag photo.key %>
+      <% end %>
       <p>Afficher les photos lol</p>
       <p>See the photos</p>
     <% else %>
@@ -176,7 +187,7 @@
   <%= simple_form_for [@trip, @new_expense] do |f| %>
     <%= f.input :title, placeholder: "Location, Billet,...", label: "Titre de la dépense" %>
     <%= f.input :amount, as: :float, placeholder: "20€", label: "Montant" %>
-     <%= f.input :mutual, as: :boolean, input_html: { class: "toggle", value: true }, label:"Tick this box if the purchase was for everyone" %>
+    <%= f.input :mutual, as: :boolean, input_html: { class: "toggle", value: true }, label:"Tick this box if the purchase was for everyone" %>
     <%= f.input :expense_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022", label: "Jour de la dépense"%>
     <%= f.submit "Ajouter une dépense" %>
   <% end %>
@@ -191,6 +202,18 @@
       <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Are you sure?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Form index users</h1>
+  <% @users.all.reject{ |user| user.id == current_user.id }.each do |user| %>
+    <%= user.email %>
+    <%= simple_form_for [@trip, @new_participant] do |f| %>
+      <%= f.input :user_id, as: :hidden, input_html: {value: user.id}%>
+      <%= f.input :trip_id, as: :hidden, input_html: {value: @trip.id} %>
+      <%= f.submit "Ajouter qn" %>
     <% end %>
   <% end %>
 </div>
