@@ -207,7 +207,15 @@
 </div>
 
 <div class="container">
-  <h1>Form index users</h1>
+  <h1>Index users & form new_participant</h1>
+  <%= form_tag trip_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Trouve un user avec son email"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
   <% @users.all.reject{ |user| user.id == current_user.id }.each do |user| %>
     <%= user.email %>
     <%= simple_form_for [@trip, @new_participant] do |f| %>
