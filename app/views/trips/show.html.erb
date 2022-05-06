@@ -30,6 +30,11 @@
   </div>
   <div class="dashboardBox boxExpenses">
     <p id="titleCardExpenses">Expenses</p>
+    <% @my_expenses.flatten.each do |expense| %>
+      <%= raise %>
+      <%= expense.title %>
+      <%= expense.amount %>€
+    <% end %>
   </div>
   <div class="dashboardBox boxPeople">
     <p id="titleCardPeople">Friends</p>

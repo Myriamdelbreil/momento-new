@@ -48,12 +48,22 @@ class TripsController < ApplicationController
     @new_participant = Participant.new
 
     # relatif aux dépenses :
-    @expenses = @participant.expenses
+    @mutual_expenses = @trip.expenses.where(mutual: true)
+    @individual_expenses = @participant.expenses.where(mutual: false)
+    @my_expenses = [@mutual_expenses, @individual_expenses]
+    # additionner toutes les dépenses mutuelles :
+    @sum_mutual_expenses = @trip.expenses.where(mutual: true).sum(:amount)
+    # additionner toutes les dépenses personnelles du participant
+    @sum_individual_expenses = @participant.expenses.where(mutual: false).sum(:amount)
+    # total par participant
+    @total_participant_expenses = @sum_individual_expenses + (@sum_mutual_expenses/@trip.participants.count)
+    #créer une nouvelle dépense
     @new_expense = Expense.new
-    @sum_of_mutual_expenses = Expense.includes(participant: :trip)
-                                .references(:trip)
-                                .where(trips: { id: @participant.trip }, mutual: true).sum(:amount)
-    @non_mutual_expenses = Expense.where(participant: @participant, mutual: false).references(:trip).sum(:amount)
+    # @sum_of_mutual_expenses = Expense.includes(participant: :trip)
+    #                             .references(:trip)
+    #                             .where(trips: { id: @participant.trip }, mutual: true).sum(:amount)
+    # @non_mutual_expenses = Expense.where(participant: @participant, mutual: false).references(:trip).sum(:amount)
+
 
     # relatif aux messages :
     @messages = @trip.messages
