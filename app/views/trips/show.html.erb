@@ -31,10 +31,10 @@
   <div class="dashboardBox boxExpenses">
     <p id="titleCardExpenses">Expenses</p>
     <% @my_expenses.flatten.each do |expense| %>
-      <%= raise %>
       <%= expense.title %>
       <%= expense.amount %>€
     <% end %>
+    <p>Mutual expenses:</p><%= @sum_mutual_expenses %>
   </div>
   <div class="dashboardBox boxPeople">
     <p id="titleCardPeople">Friends</p>
@@ -167,5 +167,17 @@
         <i class="fas fa-times"></i>
       <% end %>
     <% end %>
+  <% end %>
+</div>
+
+
+<div class="container">
+  <h1>Form new expense</h1>
+  <%= simple_form_for [@trip, @new_expense] do |f| %>
+    <%= f.input :title, placeholder: "Location, Billet,...", label: "Titre de la dépense" %>
+    <%= f.input :amount, as: :float, placeholder: "20€", label: "Montant" %>
+     <%= f.input :mutual, as: :boolean, input_html: { class: "toggle", value: true }, label:"Tick this box if the purchase was for everyone" %>
+    <%= f.input :expense_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022", label: "Jour de la dépense"%>
+    <%= f.submit "Ajouter une dépense" %>
   <% end %>
 </div>
