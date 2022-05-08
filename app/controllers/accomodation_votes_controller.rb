@@ -15,7 +15,7 @@ class AccomodationVotesController < ApplicationController
     @accomodation_vote = AccomodationVote.find(params[:accomodation_id])
     @accomodation = @accomodation_vote.accomodation
     @accomodation_vote.destroy
-    redirect_to trip_path(@accomodation.trip)
+    redirect_to trip_path(@accomodation.trip), notice: "Your vote has been deleted."
   end
 end
 

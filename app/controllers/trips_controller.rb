@@ -3,9 +3,9 @@ class TripsController < ApplicationController
     @user = current_user
     @trips = @user.trips
     @trip = Trip.new
-    @participant = Participant.new
+    @new_participant = Participant.new
     @coming_trips = @trips.select { |trip| trip.start_date > Time.now && trip.end_date > Time.now }
-    @past_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date < Time.now}
+    @past_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date < Time.now }
     @current_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date > Time.now }
     unless @trips == []
       @markers = @trips.geocoded.map do |trip|
@@ -44,15 +44,12 @@ class TripsController < ApplicationController
     end
 
     # relatif aux amis
-
     if params[:query].present?
       sql_query = " \
         users.username ILIKE :query \
         OR users.email ILIKE :query \
       "
-      @users = User.where(sql_query, query: "%#{params[:query]}%")
-    else
-      @users = User.all
+      @users = User.where(sql_query, query: "%#{params[:query]}%").reject { |user| user.id == current_user.id }
     end
     @new_participant = Participant.new
 

@@ -1,5 +1,15 @@
 <div class="dashboardMain">
   <div class="dashboardBox boxInfo">
+    <h1><%= @trip.title %></h1>
+    <% unless @trip.city.nil? %>
+      <h2><%= @trip.city %></h2>
+    <% end %>
+    <% unless @trip.start_date.nil? || @trip.end_date.nil? %>
+      <p>From: <%= @trip.start_date %> to <%= @trip.end_date %></p>
+    <% end %>
+    <% unless @trip.description.nil? %>
+      <p><%= @trip.description %></p>
+    <% end %>
   </div>
   <div class="dashboardBox boxTransportations">
     <p id="titleCardTransportations">Transportation</p>
@@ -66,10 +76,7 @@
     <% end %>
   </div>
   <div class="dashboardBox boxPhotos">
-    <% if @trip.photos.attached? %>
-      <% @trip.photos.each do |photo| %>
-        <%= cl_image_tag photo.key %>
-      <% end %>
+    <% if @trip.photo.attached? %>
       <p>Afficher les photos lol</p>
       <p>See the photos</p>
     <% else %>
@@ -77,7 +84,6 @@
     <% end %>
   </div>
 </div>
-
 
 <div class="container">
   <h1>Form new transportation</h1>
@@ -147,6 +153,16 @@
       <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
+      <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
+      <% if @participant.votes?(accomodation) %>
+        <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Are you sure?" } do %>
+          <p>Supprimer le vote</p>
+        <% end %>
+      <% else %>
+        <%= link_to participant_accomodation_accomodation_votes_path(@participant, accomodation, @new_accomodation_vote), method: :post do %>
+          <p>Vote</p>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
@@ -177,10 +193,20 @@
       <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Are you sure?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
+      <% if @participant.participates?(event) %>
+        <%= link_to event_participant_path(event.event_participants.find_by(participant_id: @participant.id)), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-times-circle delete-event-participant"></i>
+        <% end %>
+      <% else %>
+        <%= simple_form_for [event, @new_event_participant] do |f|%>
+          <%= button_tag type: 'submit' do %>
+            <div aria-hidden="true">Participate</div>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
   <% end %>
 </div>
-
 
 <div class="container">
   <h1>Form new expense</h1>
@@ -215,13 +241,18 @@
       placeholder: "Trouve un user avec son email"
     %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
+    <%# <%= raise %> %>
   <% end %>
-  <% @users.all.reject{ |user| user.id == current_user.id }.each do |user| %>
-    <%= user.email %>
-    <%= simple_form_for [@trip, @new_participant] do |f| %>
-      <%= f.input :user_id, as: :hidden, input_html: {value: user.id}%>
-      <%= f.input :trip_id, as: :hidden, input_html: {value: @trip.id} %>
-      <%= f.submit "Ajouter qn" %>
+  <% if !@users.nil? %>
+    <% @users.each do |user| %>
+      <%= user.email %>
+      <%= simple_form_for [@trip, @new_participant] do |f| %>
+        <%= f.input :user_id, as: :hidden, input_html: {value: user.id}%>
+        <%= f.input :trip_id, as: :hidden, input_html: {value: @trip.id} %>
+        <%= f.submit "Ajouter qn" %>
+      <% end %>
     <% end %>
+  <% elsif @users == [] %>
+    <p>Désolés mais ta recherche n'a rien donné...</p>
   <% end %>
 </div>

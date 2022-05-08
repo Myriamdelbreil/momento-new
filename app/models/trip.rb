@@ -9,7 +9,7 @@ class Trip < ApplicationRecord
   validates :start_date, :end_date, :title, presence: true
   validates :title, presence: true, length: { maximum: 25 }
   belongs_to :user
-  has_many_attached :photos
+  has_one_attached :photo
 
   def geocoding_needed?
     will_save_change_to_city? && !will_save_change_to_latitude? && !will_save_change_to_longitude?
