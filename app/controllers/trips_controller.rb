@@ -59,7 +59,7 @@ class TripsController < ApplicationController
       @sum_individual_expenses = @participant.expenses.where(mutual: false).sum(:amount)
       # total par participant
       @total_participant_expenses = @sum_individual_expenses + (@sum_mutual_expenses/@trip.participants.count)
-      #créer une nouvelle dépense
+      # créer une nouvelle dépense
       @new_expense = Expense.new
 
       # relatif aux messages :

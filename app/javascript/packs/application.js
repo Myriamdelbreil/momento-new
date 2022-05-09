@@ -27,3 +27,8 @@ document.addEventListener('turbolinks:load', () => {
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr2();
 });
+
+// = require chartkick
+// = require Chart.bundle
+
+import "chartkick/chart.js"

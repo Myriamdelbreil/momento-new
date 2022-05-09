@@ -233,6 +233,12 @@
 </div>
 
 <div class="container">
+  <% unless @my_expenses.count.zero? %>
+    <%= pie_chart [["Individual", @sum_individual_expenses], ["Mutual", @sum_mutual_expenses/@trip.participants.count]], legend: false  %>
+  <% end %>
+</div>
+
+<div class="container">
   <h1>Index users & form new_participant</h1>
   <%= form_tag trip_path, method: :get, class: "d-flex" do %>
     <%= text_field_tag :query,
@@ -241,7 +247,6 @@
       placeholder: "Trouve un user avec son email"
     %>
     <%= submit_tag "Search", class: "btn btn-primary" %>
-    <%# <%= raise %> %>
   <% end %>
   <% if !@users.nil? %>
     <% @users.each do |user| %>
