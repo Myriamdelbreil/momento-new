@@ -5,7 +5,7 @@
       <h2><%= @trip.city %></h2>
     <% end %>
     <% unless @trip.start_date.nil? || @trip.end_date.nil? %>
-      <p>From: <%= @trip.start_date %> to <%= @trip.end_date %></p>
+      <p>Du: <%= @trip.start_date.strftime("%d/%m/%Y") %> au <%= @trip.end_date.strftime("%d/%m/%Y") %></p>
     <% end %>
     <% unless @trip.description.nil? %>
       <p><%= @trip.description %></p>
@@ -70,8 +70,7 @@
       <% @events.each do |event| %>
         <%= event.description %>
         <%= event.category %>
-        <%= event.start_date %>
-        <%= event.end_date %>
+        <p><%= event.start_date.strftime("%d/%m/%Y") %> à <%= event.start_date.strftime("%H:%M") %></p>
       <% end %>
     <% end %>
   </div>

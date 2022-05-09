@@ -63,13 +63,17 @@
               </div>
               <div class="tripCardDetails">
                 <div class="tripCardDetailsDate">
-                  placeholder
+                  <% unless (trip.start_date.nil? && trip.end_date.nil?) %>
+                    <p><%= trip.start_date.strftime("%d/%m/%Y") %> au <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+                  <% end %>
                 </div>
                 <div class="tripCardDetailsTitle">
                   <h1><%= trip.title %></h1>
                 </div>
                 <div class="tripCardDetailsCity">
-                  <h4>placeholder</h4>
+                  <% unless trip.city.nil? %>
+                    <h4><%= trip.city.gsub(/,.*/,'') %></h4>
+                  <% end %>
                 </div>
                 <div class="tripCardDetailsDescription">
                   <p><%= trip.description %></p>
@@ -101,13 +105,17 @@
               </div>
               <div class="tripCardDetails">
                 <div class="tripCardDetailsDate">
-                  placeholder
+                  <% unless (trip.start_date.nil? && trip.end_date.nil?) %>
+                    <p><%= trip.start_date.strftime("%d/%m/%Y") %> au <%= trip.end_date.strftime("%d/%m/%Y") %></p>
+                  <% end %>
                 </div>
                 <div class="tripCardDetailsTitle">
                   <h1><%= trip.title %></h1>
                 </div>
                 <div class="tripCardDetailsCity">
-                  <h4>placeholder</h4>
+                  <% unless trip.city.nil? %>
+                    <h4><%= trip.city.gsub(/,.*/,'') %></h4>
+                  <% end %>
                 </div>
                 <div class="tripCardDetailsDescription">
                   <p><%= trip.description %></p>
