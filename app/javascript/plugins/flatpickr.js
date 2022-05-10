@@ -9,9 +9,10 @@ const initFlatpickr = () => {
     plugins: [new rangePlugin({ input: "#range_end"})]
   });
 }
+export { initFlatpickr };
 
 const initFlatpickr2 = () => {
-  // console.log("hello");
+  console.log("hello2");
   flatpickr(".datepicker", {
     enableTime: true,
     dateFormat: "Y-m-d H:i"
@@ -19,6 +20,5 @@ const initFlatpickr2 = () => {
 }
 
 
-export { initFlatpickr };
 
 export { initFlatpickr2 };

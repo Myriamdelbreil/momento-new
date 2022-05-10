@@ -5,6 +5,7 @@ class Trip < ApplicationRecord
   has_many :events, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :participants, dependent: :destroy
+  has_many :expenses, through: :participants
   validates :start_date, :end_date, :title, presence: true
   validates :title, presence: true, length: { maximum: 25 }
   belongs_to :user

@@ -17,7 +17,18 @@ import "controllers"
 import "bootstrap"
 
 import { initFlatpickr } from "../plugins/flatpickr";
+import { initFlatpickr2 } from "../plugins/flatpickr";
+
 
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
 });
+
+document.addEventListener('turbolinks:load', () => {
+  initFlatpickr2();
+});
+
+// = require chartkick
+// = require Chart.bundle
+
+import "chartkick/chart.js"

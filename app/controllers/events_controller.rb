@@ -16,7 +16,7 @@ class EventsController < ApplicationController
     @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @new_event.participant = @participant
     @new_event.trip = @trip
-    if @new_event.save
+    if @new_event.save!
       EventParticipant.create(event: @new_event, participant: @participant)
       redirect_to trip_path(@trip), notice: "Your event is now in the calendar!"
     else
@@ -41,6 +41,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:description, :start_date, :end_date, :category)
+    params.require(:event).permit(:description, :start_date, :end_date, :category, :trip_id)
   end
 end
