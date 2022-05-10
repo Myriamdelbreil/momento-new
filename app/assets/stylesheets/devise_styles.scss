@@ -1,0 +1,93 @@
+.devise-style{
+  background-color: #F2F5FF;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  .signin-signup{
+    position: relative;
+    top: 60px;
+    width: 70%;
+    color: #1E3658;
+    form{
+      h2{
+        text-align: center;
+      }
+      border-radius: 6px;
+      background-color: #ffffff;
+      padding: 20px;
+      .form-inputs{
+        margin-top: 5vh;
+        display: grid;
+        grid-gap: 16px;
+        input{
+          background-color: #F2F5FF;
+          border: none;
+        }
+      }
+      .form-input-photo{
+        input::before{
+          background-color: #cad5f9;
+        }
+        input{
+          background-color: #F2F5FF;
+          border: none;
+          color: #1E3658;
+        }
+      }
+      .form-actions{
+        text-align: center;
+        margin-top: 3vh;
+        input{
+          background-color: #1E3658;
+          color:white;
+          &:hover{
+            background-color: #F79F79;
+            color: white;
+          }
+        }
+      }
+    }
+    a{
+      color: #1E3658;
+      &:hover{
+        color: #F79F79;
+      }
+    }
+  }
+}
+
+// Smallest device
+@media (min-width: 100px) and (max-width: 575px) {
+  .form-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  .form-inputs {
+    grid-template-columns: 1fr;
+  }
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  .form-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .form-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  .form-inputs {
+    grid-template-columns: 1fr 1fr;
+  }
+}
