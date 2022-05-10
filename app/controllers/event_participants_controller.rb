@@ -19,6 +19,6 @@ class EventParticipantsController < ApplicationController
     @event_participant = EventParticipant.find(params[:id])
     @event = @event_participant.event
     @event_participant.destroy
-    redirect_to trip_path(@event.trip)
+    redirect_to trip_path(@event.trip), warning: "Tu ne participes plus à #{@event.description}"
   end
 end

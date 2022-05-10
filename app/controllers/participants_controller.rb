@@ -8,15 +8,11 @@ class ParticipantsController < ApplicationController
     @participants = @trip.participants
   end
 
-  def show
-
-  end
-
   def create
     @participant = Participant.new(participant_params)
     @participant.trip = @trip
     if @participant.save
-      redirect_to trip_path(@trip), notice: "Cool ! #{@participant.user.username} rejoint ton voyage !"
+      redirect_to trip_path(@trip), notice: "Cool ! #{@participant.user.username.capitalize} rejoint ton voyage !"
     else
       render trip_path(@trip), alert: "Oups... Ca n'a pas marché, désolés..."
     end
@@ -26,8 +22,8 @@ class ParticipantsController < ApplicationController
     @participant = Participant.find(params[:id])
     username = @participant.user.username
     @trip = @participant.trip
-    participant.destroy
-    redirect_to trip_path(@trip), notice: "#{username} ne vient plus avec vous, dommage !"
+    @participant.destroy
+    redirect_to trip_path(@trip), alert: "#{username} ne vient plus avec vous, dommage !"
   end
 
   private

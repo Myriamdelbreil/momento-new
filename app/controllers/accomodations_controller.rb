@@ -34,7 +34,7 @@ class AccomodationsController < ApplicationController
     @accomodation = Accomodation.find(params[:id])
     @trip = @accomodation.trip
     @accomodation.destroy
-    redirect_to trip_path(@trip)
+    redirect_to trip_path(@trip), notice: "Le logement a été supprimée de la liste."
   end
 
   def confirm_accomodation

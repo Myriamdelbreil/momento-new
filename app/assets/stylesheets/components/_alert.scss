@@ -1,4 +1,4 @@
-.alert, .notice {
+.alert, .notice, .warning {
   position: fixed;
   bottom: 16px;
   right: 16px;
@@ -16,4 +16,8 @@
 
 .alert{
   border: 2px solid #FD1015;
+}
+
+.warning{
+  border: 2px solid orange;
 }
