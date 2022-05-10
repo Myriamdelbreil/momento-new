@@ -75,11 +75,13 @@
     <% end %>
   </div>
   <div class="dashboardBox boxPhotos">
-    <% if @trip.photo.attached? %>
-      <p>Afficher les photos lol</p>
-      <p>See the photos</p>
-    <% else %>
-      <p>Add some photos </p>
+    <% @participants.each do |participant| %>
+      <% if participant.photos.attached? %>
+        <p>Afficher les photos lol</p>
+        <p>See the photos</p>
+      <% else %>
+        <p>Add some photos </p>
+      <% end %>
     <% end %>
   </div>
 </div>
@@ -258,5 +260,13 @@
     <% end %>
   <% elsif @users == [] %>
     <p>Désolés mais ta recherche n'a rien donné...</p>
+  <% end %>
+</div>
+
+<div class="container">
+  <h1>Form add photos</h1>
+  <%= simple_form_for @participant, method: :patch do |f| %>
+    <%= f.input :photos, as: :file %>
+    <%= f.submit "Ajouter une photo" %>
   <% end %>
 </div>

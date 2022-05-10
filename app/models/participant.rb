@@ -7,6 +7,7 @@ class Participant < ApplicationRecord
   has_many :expenses, dependent: :delete_all
   has_many :messages, dependent: :delete_all
   has_many :transportations, dependent: :delete_all
+  has_many_attached :photos
 
   def participates?(event)
     event_participants.find_by(event: event).present?
