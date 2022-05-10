@@ -7,9 +7,16 @@ class TripsController < ApplicationController
     @coming_trips = @trips.select { |trip| trip.start_date > Time.now && trip.end_date > Time.now }
     @past_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date < Time.now }
     @current_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date > Time.now }
-    # unless @trips == []
-    #   @markers = @trips.each { |trip| trip.geocoded do lat: trip.latitude, lng: trip.longitude  }
-    # end
+    unless @trips == []
+      @markers = @trips.each do |trip|
+        if trip.geocoded?
+          {
+            lat: trip.latitude,
+            lng: trip.longitude
+          }
+        end
+      end
+    end
   end
 
   def show
