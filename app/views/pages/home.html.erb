@@ -8,7 +8,7 @@
     <% if user_signed_in? %>
       <%= link_to "My trips", trips_path, class: "btn btn-lg btn-homepage"  %>
     <% else %>
-      <%= link_to "Join us !", root_path, class: "btn btn-lg btn-homepage"  %>
+      <%= link_to "Join us !", new_user_registration_path, class: "btn btn-lg btn-homepage"  %>
     <% end %>
   </div>
 </div>
