@@ -283,25 +283,26 @@
   <% end %>
 </div>
 
-<div class="container">
-  <div class="messages" style="width:100%; height:200px">
+<div
+  class="container"
+  style="margin-top:30px"
+  data-controller="trip-subscription" data-trip-subscription-current-user-id-value="<%= current_user.id %>" data-trip-subscription-trip-id-value="<%= @trip.id %>">
+  <div
+    class="messages"
+    style="width:100%; height:200px" data-trip-subscription-target="messages">
     <% @messages.each do |message| %>
       <div id="message-<%= message.id %>">
-        <small>
-          <strong><%= message.user.username %></strong>
-          <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-        </small>
-        <p><%= message.content %></p>
+        <%= render "messages/message", message: message %>
       </div>
     <% end %>
   </div>
   <%= simple_form_for [@trip, @new_message],
     remote: true,
-    html: {class: "d-flex"} do |f| %>
-      <%= f.input :content,
-        label: false,
-        wrapper_html: {class: "flex-grow-1"}
-      %>
+    html: {
+      # class: "d-flex",
+      'data-trip-subscription-target': 'form'
+      } do |f| %>
+      <%= f.input :content %>
       <%= f.submit "Send", class: "btn btn-primary" %>
-<% end %>
+  <% end %>
 </div>
