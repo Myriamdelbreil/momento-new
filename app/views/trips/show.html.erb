@@ -17,8 +17,9 @@
       <p>Add your ticket !</p>
     <% else %>
       <p>You have booked <%= @transportations.count %> travel tickets.</p>
-      <% first = @transportations.sort_by(&:departure_date).select { |transportation| transportation.departure_date >= Time.now}.first %>
-      <p>Your next travel to <%= first.destination %> is in <%= ((first.departure_date - Time.now)/86400).to_i %> day(s)</p>
+      <% @transportations.sort_by(&:departure_date).each do |transportation| %>
+        <p>Your next travel to <%= transportation.destination %> is in <%= ((transportation.departure_date - Time.now)/86400).to_i %> day(s)</p>
+      <% end %>
       <p>See your next journey</p>
     <% end %>
   </div>
@@ -89,7 +90,9 @@
   <%= simple_form_for [@trip, @new_transportation] do |f| %>
     <%= f.input :origin, placeholder:"Paris, Gare de Lyon,...", label:"From..." %>
     <%= f.input :destination, placeholder:"Madrid, London Heathrow,...", label:"To..." %>
-    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
+    <% if @participant.transportations.count != 0 %>
+      <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
+    <% end %>
     <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
     <%= f.input :mean, label:"Avion, train, voiture?", as: :select, collection: Transportation::CATEGORIES %>
     <%= f.input :price, label:"Prix", placeholder:"100 €" %>

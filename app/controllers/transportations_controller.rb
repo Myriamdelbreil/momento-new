@@ -10,6 +10,8 @@ class TransportationsController < ApplicationController
     @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @new_transportation = Transportation.new(transportations_params)
     @new_transportation.participant = @participant
+    # @new_transportation.departure_date = @trip.start_date if @participant.transportations.count.zero?
+
     if @new_transportation.save
       redirect_to trip_path(@trip), notice: "Your ticket has been added!"
     else
