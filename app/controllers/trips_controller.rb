@@ -73,6 +73,7 @@ class TripsController < ApplicationController
 
       # relatif aux messages :
       @messages = @trip.messages
+      @new_message = Message.new
 
       # relatifs à l'agenda
       @new_event = Event.new
