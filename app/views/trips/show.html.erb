@@ -131,13 +131,14 @@
 <div class="container">
   <h1>Form new accomodation</h1>
   <%= simple_form_for [@trip, @new_accomodation] do |f| %>
-    <%= f.input :title, placeholder: "Family house", label: "Name" %>
-    <%= f.input :address, placeholder: "88 rue de Rivoli", label: "Address" %>
-    <%= f.input :price, placeholder: "300 €", label: "Price" %>
+    <%= f.input :title, placeholder: "Family house", label: "Titre du logement" %>
+    <%= f.input :address, placeholder: "88 rue de Rivoli", label: "Adresse" %>
+    <%= f.input :price, placeholder: "300 €", label: "Prix" %>
     <%= f.input :latitude, as: :hidden, input_html: { data: { geocoder_target: "latitude" }} %>
     <%= f.input :longitude, as: :hidden, input_html: { data: { geocoder_target: "longitude" }} %>
-    <%= f.input :img, placeholder:"https://www.familyhouse.com/.jpeg", label: "Image url" %>
+    <%= f.input :img, placeholder:"https://www.familyhouse.com/.jpeg", label: "Lien de l'image" %>
     <%= f.input :description, placeholder: "Perfect house for families", label: "Description" %>
+    <%= f.input :url, placeholder: "https://www.airbnb.fr/rooms/604726298950758799?adults=1&category_tag=...", label: "Lien du logement" %>
     <%= f.submit "Let's go" %>
   <% end %>
 </div>
@@ -146,22 +147,29 @@
   <h1>Index accomodations</h1>
   <% if @accomodations.count > 0 %>
     <% @accomodations.each do |accomodation|  %>
-      <p>Title: <%= accomodation.title %></p>
-      <p>Address : <%= accomodation.address %></p>
-      <p>Description : <%= accomodation.description %></p>
-      <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-times"></i>
-      <% end %>
-      <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
-      <% if @participant.votes?(accomodation) %>
-        <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Are you sure?" } do %>
-          <p>Supprimer le vote</p>
+      <div data-controller="accomodation-infos">
+        <p>Title: <%= accomodation.title %></p>
+        <p>Address : <%= accomodation.address %></p>
+        <p>Description : <%= accomodation.description %></p>
+        <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <i class="fas fa-times"></i>
         <% end %>
-      <% else %>
-        <%= link_to participant_accomodation_accomodation_votes_path(@participant, accomodation, @new_accomodation_vote), method: :post do %>
-          <p>Vote</p>
-        <% end %>
-      <% end %>
+        <button data-action="click->accomodation-infos#revealContent" data-accomodation-infos-target="button1">Voir + </button>
+        <button data-action="click->accomodation-infos#hideContent" data-accomodation-infos-target="button2" class="d-none">Voir -</button>
+        <div class="d-none" data-accomodation-infos-target="content">
+          <p>Lien: <%= accomodation.url %></p>
+          <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
+          <% if @participant.votes?(accomodation) %>
+            <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <p>Supprimer le vote</p>
+            <% end %>
+          <% else %>
+            <%= link_to participant_accomodation_accomodation_votes_path(@participant, accomodation, @new_accomodation_vote), method: :post do %>
+              <p>Vote</p>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
   <% end %>
 </div>
