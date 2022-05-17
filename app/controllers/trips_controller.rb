@@ -33,14 +33,16 @@ class TripsController < ApplicationController
       # relatif aux accomodations
       @accomodations = @trip.accomodations
       @new_accomodation = Accomodation.new
-      # @markers = @accomodations.geocoded.map do |accomodation|
-      #   {
-      #     lat: accomodation.latitude,
-      #     lng: accomodation.longitude,
-      #     # info_window: render_to_string(partial: "info_window", locals: { accomodations: accomodation }),
-      #     # image_url: helpers.asset_url("emplacement.png")
-      #   }
-      # end
+      if @accomodations.count.positive?
+        @markers = @accomodations.geocoded.map do |accomodation|
+          {
+            lat: accomodation.latitude,
+            lng: accomodation.longitude,
+            # info_window: render_to_string(partial: "info_window", locals: { accomodations: accomodation }),
+            # image_url: helpers.asset_url("emplacement.png")
+          }
+        end
+      end
       @new_accomodation_vote = AccomodationVote.new
       @accomodations.each do |accomodation|
         @accomodation_votes = accomodation.accomodation_votes
