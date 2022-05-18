@@ -43,6 +43,10 @@
   align-items: center;
 }
 
+.scroll-arrow:hover {
+  cursor: pointer;
+}
+
 // iphone
 @media (max-width: 480px) {
   #banner-description {
