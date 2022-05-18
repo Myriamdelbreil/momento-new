@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2022_05_04_122305) do
     t.bigint "participant_id", null: false
     t.bigint "trip_id", null: false
     t.string "description"
-    t.datetime "start_date"
+    t.string "start_date"
     t.string "end_date"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
@@ -127,8 +127,8 @@ ActiveRecord::Schema.define(version: 2022_05_04_122305) do
     t.string "origin"
     t.string "destination"
     t.string "mean"
-    t.datetime "departure_date"
-    t.datetime "arrival_date"
+    t.string "departure_date"
+    t.string "arrival_date"
     t.float "latitude"
     t.float "longitude"
     t.datetime "created_at", precision: 6, null: false
@@ -138,8 +138,8 @@ ActiveRecord::Schema.define(version: 2022_05_04_122305) do
 
   create_table "trips", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.datetime "start_date"
-    t.datetime "end_date"
+    t.string "start_date"
+    t.string "end_date"
     t.string "title"
     t.text "description"
     t.string "city"
