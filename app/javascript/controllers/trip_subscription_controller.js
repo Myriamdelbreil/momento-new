@@ -17,7 +17,7 @@ export default class extends Controller {
 
   insertMessageScrollDownAndResetForm(data) {
     this.messagesTarget.insertAdjacentHTML("beforeend", data.message_html);
-    // if (this.currentUserIdValue != data.auhtor_id) this.messageTargets[this.messageTargets.length - 1].classList.remove('my-message');
+    if (this.currentUserIdValue != data.auhtor_id) this.messageTargets[this.messageTargets.length - 1].classList.remove('my-message');
     console.log("Insertion2 ok")
     console.log(this.messagesTarget.scrollHeight)
     this.messagesTarget.scrollTo(0, this.messageTarget.scrollHeight);

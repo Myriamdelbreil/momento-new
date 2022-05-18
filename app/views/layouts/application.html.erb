@@ -23,9 +23,23 @@
     </div>
 
     <% if notice != nil %>
-      <p class="notice"><%= notice %></p>
+      <div class="notice flash-success alert-dismissible fade show" role="notice">
+        <div>
+          <p><%= notice %></p>
+        </div>
+        <div>
+          <a data-bs-dismiss="alert" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </a>
+        </div>
+      </div>
     <% elsif alert != nil %>
-      <p class="alert"><%= alert %></p>
+      <div class="alert flash-warning alert-dismissible fade show" role="notice">
+        <p><%= alert %></p>
+        <a data-bs-dismiss="alert" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </a>
+      </div>
     <% end %>
 
   </body>
