@@ -55,7 +55,7 @@
       <p>
         <% @trip.participants.each do |participant| %>
           <%= participant.user.email %>
-          <%= link_to participant_path(participant), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <%= link_to participant_path(participant), method: :delete, data: { confirm: "Annuler la participation de #{participant.user.username.capitalize} ?" } do %>
             <i class="fas fa-times"></i>
           <% end %>
         <% end %>
@@ -119,7 +119,7 @@
           <p>Duration: <%= ((transportation.arrival_date - transportation.departure_date)/3600).round %>h</p>
         </div>
         <div class="row">
-      <%= link_to trip_transportation_path(transportation.participant.trip, transportation), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_transportation_path(transportation.participant.trip, transportation), method: :delete, data: { confirm: "Supprimer le billet ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
         </div>
@@ -156,7 +156,7 @@
         <div>
           <p>Title: <%= accomodation.title %></p>
           <p>Address : <%= accomodation.address %></p>
-          <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Supprimer le logement ?" } do %>
             <i class="fas fa-times"></i>
           <% end %>
           <button data-action="click->accomodation-infos#revealContent" data-accomodation-infos-target="button1">Voir + </button>
@@ -166,7 +166,7 @@
             <p>Lien: <%= accomodation.url %></p>
             <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
             <% if @participant.votes?(accomodation) %>
-              <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Are you sure?" } do %>
+              <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Annuler le vote ?" } do %>
                 <p>Supprimer le vote</p>
               <% end %>
             <% else %>
@@ -211,11 +211,11 @@
           <%=  event_participant.participant.user.email %>
         <% end %>
       </p>
-      <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Supprimer l'évènement du calendrier ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
       <% if @participant.participates?(event) %>
-        <%= link_to event_participant_path(event.event_participants.find_by(participant_id: @participant.id)), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <%= link_to event_participant_path(event.event_participants.find_by(participant_id: @participant.id)), method: :delete, data: { confirm: "Ne plus participer ?" } do %>
           <i class="fas fa-times-circle delete-event-participant"></i>
         <% end %>
       <% else %>
@@ -246,7 +246,7 @@
   <% if @my_expenses.flatten.count > 0 %>
     <% @my_expenses.flatten.each do |expense|  %>
       <p>Titre: <%= expense.title %></p>
-      <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Supprimer la dépense ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
     <% end %>

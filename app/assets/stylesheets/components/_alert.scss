@@ -1,4 +1,4 @@
-.alert, .notice, .warning {
+.alert, .notice {
   position: fixed;
   bottom: 16px;
   right: 16px;
@@ -29,9 +29,5 @@
 }
 
 .alert{
-  border: 2px solid #b64c6b;
-}
-
-.warning{
   border: 2px solid #f2b440;
 }
