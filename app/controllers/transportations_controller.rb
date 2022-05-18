@@ -10,10 +10,13 @@ class TransportationsController < ApplicationController
     @participant = Participant.find_by(user_id: current_user.id, trip_id: @trip.id)
     @new_transportation = Transportation.new(transportations_params)
     @new_transportation.participant = @participant
-    if @new_transportation.save
-      redirect_to trip_path(@trip), notice: "Your ticket has been added!"
+    # @new_transportation.departure_date = @trip.start_date if @participant.transportations.count.zero?
+    if @new_transportation.departure_date > @new_transportation.arrival_date
+      redirect_to trip_path(@trip), alert: "Ta date de départ est après ta date d'arrivée, réessaie !"
+    elsif @new_transportation.save
+      redirect_to trip_path(@trip), notice: "Ton ticket a été ajouté !"
     else
-      redirect_to trip_path(@trip), alert: "Your ticket hasn't been added... Please retry"
+      redirect_to trip_path(@trip), alert: "Oups ! Désolés, quelque chose n'a pas marché... Réessaie !"
     end
   end
 

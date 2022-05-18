@@ -17,8 +17,9 @@
       <p>Add your ticket !</p>
     <% else %>
       <p>You have booked <%= @transportations.count %> travel tickets.</p>
-      <% first = @transportations.sort_by(&:departure_date).select { |transportation| transportation.departure_date >= Time.now}.first %>
-      <p>Your next travel to <%= first.destination %> is in <%= ((first.departure_date - Time.now)/86400).to_i %> day(s)</p>
+      <% @transportations.sort_by(&:departure_date).each do |transportation| %>
+        <p>Your next travel to <%= transportation.destination %> is in <%= ((transportation.departure_date - Time.now)/86400).to_i %> day(s)</p>
+      <% end %>
       <p>See your next journey</p>
     <% end %>
   </div>
