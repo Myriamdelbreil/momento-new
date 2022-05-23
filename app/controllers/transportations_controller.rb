@@ -31,7 +31,7 @@ class TransportationsController < ApplicationController
     @trip = Trip.find(params[:trip_id])
     @participant = Participant.where(user: current_user, trip: @trip)
     @transportation.destroy
-    redirect_to trip_path(@trip)
+    redirect_to trip_path(@trip), alert: "Ton ticket a été supprimé."
   end
 
 

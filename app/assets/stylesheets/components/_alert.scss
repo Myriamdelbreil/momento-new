@@ -1,23 +1,33 @@
-.alert, .notice, .warning {
+.alert, .notice {
   position: fixed;
   bottom: 16px;
   right: 16px;
   z-index: 1000;
-  padding: 16px 24px;
   background: white;
   box-shadow: 0 0 8px rgba(0,0,0,0.2);
   border-radius: 4px;
   margin: 8px;
+  display: flex;
+  align-items: self-start;
+  p {
+    margin: 0;
+    padding: 16px 24px;
+  }
+  a {
+    color: grey;
+    opacity: 0.8;
+    margin-right: 0.5rem;
+  }
+}
+
+.alert-dismissible {
+  padding: 0;
 }
 
 .notice{
-  border: 2px solid #1EDD88;
+  border: 2px solid #42abb3;
 }
 
 .alert{
-  border: 2px solid #FD1015;
-}
-
-.warning{
-  border: 2px solid orange;
+  border: 2px solid #f2b440;
 }

@@ -56,7 +56,7 @@
       <p>
         <% @trip.participants.each do |participant| %>
           <%= participant.user.email %>
-          <%= link_to participant_path(participant), method: :delete, data: { confirm: "Are you sure?" } do %>
+          <%= link_to participant_path(participant), method: :delete, data: { confirm: "Annuler la participation de #{participant.user.username.capitalize} ?" } do %>
             <i class="fas fa-times"></i>
           <% end %>
         <% end %>
@@ -90,8 +90,8 @@
   <%= simple_form_for [@trip, @new_transportation] do |f| %>
     <%= f.input :origin, placeholder:"Paris, Gare de Lyon,...", label:"From..." %>
     <%= f.input :destination, placeholder:"Madrid, London Heathrow,...", label:"To..." %>
-    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
-    <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022"%>
+    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {id: "range_start"}, placeholder:"21/03/2022"%>
+    <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {id: "range_end"}, placeholder:"21/03/2022"%>
     <%= f.input :mean, label:"Avion, train, voiture?", as: :select, collection: Transportation::CATEGORIES %>
     <%= f.input :price, label:"Prix", placeholder:"100 €" %>
     <%= f.submit "Let's go" %>
@@ -120,7 +120,7 @@
           <p>Duration: <%= ((transportation.arrival_date - transportation.departure_date)/3600).round %>h</p>
         </div>
         <div class="row">
-      <%= link_to trip_transportation_path(transportation.participant.trip, transportation), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_transportation_path(transportation.participant.trip, transportation), method: :delete, data: { confirm: "Supprimer le billet ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
         </div>
@@ -132,47 +132,69 @@
 <div class="container">
   <h1>Form new accomodation</h1>
   <%= simple_form_for [@trip, @new_accomodation] do |f| %>
-    <%= f.input :title, placeholder: "Family house", label: "Name" %>
-    <%= f.input :address, placeholder: "88 rue de Rivoli", label: "Address" %>
-    <%= f.input :price, placeholder: "300 €", label: "Price" %>
+    <%= f.input :title, placeholder: "Family house", label: "Titre du logement" %>
+    <%= f.input :address,
+      placeholder: "88 rue de Rivoli",
+      label: "Adresse",
+      input_html: { data: { geocoder_target: "address" } },
+      wrapper_html: { data: { geocoder_target: "addressWrapper" }},
+      label: "Address" %>
+    <%= f.input :price, placeholder: "300 €", label: "Prix"  %>
     <%= f.input :latitude, as: :hidden, input_html: { data: { geocoder_target: "latitude" }} %>
     <%= f.input :longitude, as: :hidden, input_html: { data: { geocoder_target: "longitude" }} %>
-    <%= f.input :img, placeholder:"https://www.familyhouse.com/.jpeg", label: "Image url" %>
+    <%= f.input :img, placeholder:"https://www.familyhouse.com/.jpeg", label: "Lien de l'image" %>
     <%= f.input :description, placeholder: "Perfect house for families", label: "Description" %>
+    <%= f.input :url, placeholder: "https://www.airbnb.fr/rooms/604726298950758799?adults=1&category_tag=...", label: "Lien du logement" %>
     <%= f.submit "Let's go" %>
   <% end %>
 </div>
 
-<div class="container">
+<div class="container" data-controller="accomodation-infos">
   <h1>Index accomodations</h1>
-  <% if @accomodations.count > 0 %>
-    <% @accomodations.each do |accomodation|  %>
-      <p>Title: <%= accomodation.title %></p>
-      <p>Address : <%= accomodation.address %></p>
-      <p>Description : <%= accomodation.description %></p>
-      <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Are you sure?" } do %>
-        <i class="fas fa-times"></i>
+  <% if @accomodations.count.positive? %>
+    <div>
+      <% @accomodations.each do |accomodation|  %>
+        <div>
+          <p>Title: <%= accomodation.title %></p>
+          <p>Address : <%= accomodation.address %></p>
+          <%= link_to trip_accomodation_path(accomodation.trip, accomodation), method: :delete, data: { confirm: "Supprimer le logement ?" } do %>
+            <i class="fas fa-times"></i>
+          <% end %>
+          <button data-action="click->accomodation-infos#revealContent" data-accomodation-infos-target="button1">Voir + </button>
+          <button data-action="click->accomodation-infos#hideContent" data-accomodation-infos-target="button2" class="d-none">Voir -</button>
+          <div class="d-none" data-accomodation-infos-target="content">
+            <p>Description : <%= accomodation.description %></p>
+            <p>Lien: <%= accomodation.url %></p>
+            <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
+            <% if @participant.votes?(accomodation) %>
+              <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Annuler le vote ?" } do %>
+                <p>Supprimer le vote</p>
+              <% end %>
+            <% else %>
+              <%= link_to participant_accomodation_accomodation_votes_path(@participant, accomodation, @new_accomodation_vote), method: :post do %>
+                <p>Vote</p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
-      <p>Nombre de votes: <%=  accomodation.accomodation_votes.count %></p>
-      <% if @participant.votes?(accomodation) %>
-        <%= link_to accomodation_accomodation_vote_path(AccomodationVote.find_by(participant: @participant, accomodation: accomodation)), class: "d-flex align-items-center fav-button", method: :delete, data: { confirm: "Are you sure?" } do %>
-          <p>Supprimer le vote</p>
-        <% end %>
-      <% else %>
-        <%= link_to participant_accomodation_accomodation_votes_path(@participant, accomodation, @new_accomodation_vote), method: :post do %>
-          <p>Vote</p>
-        <% end %>
-      <% end %>
-    <% end %>
+    </div>
   <% end %>
+  <div class="d-flex align-items-center justify-content-center pb-4" data-accomodation-infos-target="accomodationsMap">
+    <div style="width:50%; height:100px"
+      data-controller="mapbox"
+      data-mapbox-markers-value="<%= @markers.to_json %>"
+      data-mapbox-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div>
+  </div>
 </div>
 
 <div class="container">
   <h1>Form new event</h1>
   <%= simple_form_for [@trip, @new_event] do |f| %>
     <%= f.input :description, placeholder: "Cooking class,...", label: "Name" %>
-    <%= f.input :start_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
-    <%= f.input :end_date, as: :string, required: false, input_html: {class: "datepicker"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
+    <%= f.input :start_date, as: :string, required: false, input_html: {id: "range_start"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
+    <%= f.input :end_date, as: :string, required: false, input_html: {id: "range_end"}, placeholder:"21/03/2022 at 09:00AM", label: "Ends when?" %>
     <%= f.input :category, as: :select, collection: Event::ACTIVITIES%>
     <%= f.submit "Let's go" %>
   <% end %>
@@ -190,11 +212,11 @@
           <%=  event_participant.participant.user.email %>
         <% end %>
       </p>
-      <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_event_path(event.trip, event), method: :delete, data: { confirm: "Supprimer l'évènement du calendrier ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
       <% if @participant.participates?(event) %>
-        <%= link_to event_participant_path(event.event_participants.find_by(participant_id: @participant.id)), method: :delete, data: { confirm: "Are you sure?" } do %>
+        <%= link_to event_participant_path(event.event_participants.find_by(participant_id: @participant.id)), method: :delete, data: { confirm: "Ne plus participer ?" } do %>
           <i class="fas fa-times-circle delete-event-participant"></i>
         <% end %>
       <% else %>
@@ -225,7 +247,7 @@
   <% if @my_expenses.flatten.count > 0 %>
     <% @my_expenses.flatten.each do |expense|  %>
       <p>Titre: <%= expense.title %></p>
-      <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Are you sure?" } do %>
+      <%= link_to trip_expense_path(@trip, expense), method: :delete, data: { confirm: "Supprimer la dépense ?" } do %>
         <i class="fas fa-times"></i>
       <% end %>
     <% end %>
@@ -259,5 +281,29 @@
     <% end %>
   <% elsif @users == [] %>
     <p>Désolés mais ta recherche n'a rien donné...</p>
+  <% end %>
+</div>
+
+<div
+  class="container"
+  style="margin-top:30px"
+  data-controller="trip-subscription" data-trip-subscription-current-user-id-value="<%= current_user.id %>" data-trip-subscription-trip-id-value="<%= @trip.id %>">
+  <div
+    class="messages"
+    style="width:100%; height:200px" data-trip-subscription-target="messages">
+    <% @messages.each do |message| %>
+      <div id="message-<%= message.id %>">
+        <%= render "messages/message", message: message %>
+      </div>
+    <% end %>
+  </div>
+  <%= simple_form_for [@trip, @new_message],
+    remote: true,
+    html: {
+      # class: "d-flex",
+      'data-trip-subscription-target': 'form'
+      } do |f| %>
+      <%= f.input :content %>
+      <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
 </div>

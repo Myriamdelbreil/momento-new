@@ -1,0 +1,7 @@
+<div id="message-<%= message.id %>" data-trip-subscription-target="message">
+  <small>
+    <strong><%= message.participant.user.username %></strong>
+    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
+  <p><%= message.content %></p>
+</div>

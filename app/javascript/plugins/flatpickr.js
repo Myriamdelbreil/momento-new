@@ -6,13 +6,14 @@ const initFlatpickr = () => {
   // console.log("hello");
   flatpickr("#range_start", {
     altInput: true,
-    plugins: [new rangePlugin({ input: "#range_end"})]
+    plugins: [new rangePlugin({ input: "#range_end"})],
+    enableTime: true
   });
 }
 export { initFlatpickr };
 
 const initFlatpickr2 = () => {
-  console.log("hello2");
+  // console.log("hello2");
   flatpickr(".datepicker", {
     enableTime: true,
     dateFormat: "Y-m-d H:i"
