@@ -1,0 +1,13 @@
+
+<div class="container" style="margin-top:30px">
+  <h3>Contact Us</h3>
+  <%= form_with(model: @contact, local: true) do |f| %>
+    <%= f.label :name, "name" %>
+    <%= f.text_field :name %>
+    <%= f.label :email, "mail address" %>
+    <%= f.email_field :email, autocomplete: "email" %>
+    <%= f.label :content, "Not like" %>
+    <%= f.text_field :content %>
+    <%= f.submit "Come" %>
+  <% end %>
+</div>

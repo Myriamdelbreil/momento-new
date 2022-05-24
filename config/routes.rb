@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       get :confirm_accomodation
     end
   end
+
+  resources :contacts, only: [:new, :create]
 end
