@@ -26,4 +26,10 @@
   --transportations: #568A75;
 }
 
+*{ scrollbar-width: none !important }
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 @import 'cookies_eu';
