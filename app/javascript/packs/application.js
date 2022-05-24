@@ -32,3 +32,5 @@ document.addEventListener('turbolinks:load', () => {
 // = require Chart.bundle
 
 import "chartkick/chart.js"
+
+require("custom/main")

@@ -20,7 +20,11 @@
     <%= render 'shared/navbar' %>
     <div class="content-wrapper">
       <%= yield %>
+      <% if cookies[:allow_cookies].blank? %>
+        <%= render 'shared/cookies_bar' %>
+      <% end %>
     </div>
+
 
     <% if notice != nil %>
       <div class="notice flash-success alert-dismissible fade show" role="notice">
@@ -41,6 +45,5 @@
         </a>
       </div>
     <% end %>
-
   </body>
 </html>
