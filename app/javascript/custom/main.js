@@ -3,18 +3,16 @@ class CookieBar {
     this.cookiesBar = document.getElementById('cookies-bar');
   }
 
-
   init() {
     if (this.cookiesAllowed()) {
       this.appendGACode();
     }
-    console.log("hello")
 
     this.addButtonBehaviors();
   }
 
   cookiesAllowed() {
-    return this.Cookies('allow_cookies') === 'yes';
+    return Cookies.get('allow_cookies') === 'yes';
   }
 
   addButtonBehaviors() {
@@ -49,7 +47,6 @@ class CookieBar {
         expires: 365
       });
     }
-
 
     this.cookiesBar.classList.add('d-none');
   }

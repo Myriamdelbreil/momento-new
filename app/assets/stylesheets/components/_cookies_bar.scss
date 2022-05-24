@@ -2,26 +2,22 @@
   position: sticky;
   bottom: 0;
 
-  padding: 0px 10px 5px 10px;
+  padding: 5px 10px 5px 10px;
 
-  // border: 1px solid #9CA3AF;
   border-bottom: none;
   background-color: #F3F4F6;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  z-index: 1000;
+  z-index: 3000;
 
   p {
-    padding: none;
+    text-align: center;
+    padding: 0px !important;
   }
 
   .btn {
     display: block;
-    border: 1px solid #4B5563;
-    background-color: #6B7280;
+    border: 1px solid #50587C;
+    background-color: #50587C;
     color: #FFF;
     padding: 5px;
     margin-bottom: 5px;
@@ -29,10 +25,10 @@
     text-decoration: none;
 
     &.accept:hover {
-      background-color: #047857;
+      background-color: #568A75;
     }
     &.reject:hover {
-      background-color: #B91C1C;
+      background-color: #B64D6B;
     }
   }
 
@@ -40,8 +36,9 @@
     display: flex;
     max-width: 700px;
     align-items: center;
+    justify-content: center;
     margin: 0 auto;
-    padding-bottom: 0;
+    padding: 10px 0px;
 
     .btn {
       padding: 10px 20px;
