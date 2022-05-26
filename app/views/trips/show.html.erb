@@ -24,6 +24,10 @@
         <p>Your next travel to <strong><%= transportation.destination %></strong> is in <%= pluralize ((transportation.departure_date - Time.now)/86400).to_i, "day" %></p>
       <% end %>
     <% end %>
+    <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#ShowTransportationModal">
+      +
+    </button>
+    <%= render "./trip_boxes/transportations_modal" %>
   </div>
   <div class="dashboardBox boxAccomodations">
     <p id="titleCardAccomodations">Accomodations</p>
