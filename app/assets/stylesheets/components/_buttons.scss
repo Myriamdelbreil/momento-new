@@ -23,3 +23,26 @@
     color: white;
    }
 }
+
+// DASHBOARD
+.btn-add {
+  height: 30px;
+  width: 30px;
+  background-color: white;
+  color: #F79F79;
+  border: solid 1px;
+  border-color: #F79F79;
+  border-radius: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 19px;
+  right: 19px;
+  z-index: 1;
+
+  &:hover {
+    background-color: #F79F79;
+    color: white;
+  }
+}
