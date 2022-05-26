@@ -21,48 +21,33 @@
 }
 
 .boxInfo {
-  // grid-area: 1, 1, 3, 4;
-  grid-column-start: 1;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 4; // à changer pour un grid-area en une ligne
+  grid-area: 1/1/4/3;
+
 }
 
 .boxTransportations {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 4;
-  grid-row-end: 6;
+  grid-area: 4/1/6/2;
   #titleCardTransportations {
     color: var(--transportation)
   }
 }
 
 .boxAccomodations {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 6;
-  grid-row-end: 9;
+  grid-area: 6/1/9/2;
   #titleCardAccomodations {
     color: var(--accomodations)
   }
 }
 
 .boxPeople {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 7;
-  grid-row-end: 9;
+  grid-area: 7/2/9/3;
   #titleCardPeople {
     color: var(--people)
   }
 }
 
 .boxExpenses {
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 7;
+  grid-area: 4/2/7/3;
   overflow: hidden;
   #titleCardExpenses {
     color: var(--expenses)
@@ -70,18 +55,12 @@
 }
 
 .boxPhotos {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 9;
+  grid-area: 6/3/9/4;
   padding: 0;
 }
 
 .boxEvents {
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 1;
-  grid-row-end: 6;
+  grid-area: 1/3/6/4;
   #titleCardEvents {
     color: var(--events);
   }
@@ -98,54 +77,32 @@
   }
 
   .boxInfo {
-    // grid-area: 1, 1, 3, 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2; // à changer pour un grid-area en une ligne
+    grid-area: 1/1/2/3;
   }
 
   .boxTransportations {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-area: 2/1/3/2;
   }
 
   .boxAccomodations {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 2;
-    grid-row-end: 3;
+    grid-area: 2/2/3/3;
   }
 
   .boxPeople {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-area: 3/2/4/3;
   }
 
   .boxExpenses {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 4;
-    grid-row-end: 5;
+    grid-area: 4/2/5/3;
     overflow: hidden;
   }
 
   .boxPhotos {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 5;
-    grid-row-end: 4;
+    grid-area: 4/1/4/2;
     padding: 0;
   }
 
   .boxEvents {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 3;
-    grid-row-end: 4;
+    grid-area: 3/1/4/2;
   }
 }
