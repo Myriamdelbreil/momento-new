@@ -24,6 +24,15 @@
         <p>Your next travel to <strong><%= transportation.destination %></strong> is in <%= pluralize ((transportation.departure_date - Time.now)/86400).to_i, "day" %></p>
       <% end %>
     <% end %>
+    <% unless @participant.transportations == [] %>
+      <button type="button" class="btn btn-light btn-sm btn-more-infos" data-bs-toggle="modal" data-bs-target="#ShowTransportationModal">
+        more info
+      </button>
+    <% end %>
+    <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#">
+      +
+    </button>
+    <%= render "./trip_boxes/transportations_modal" %>
   </div>
   <div class="dashboardBox boxAccomodations">
     <p id="titleCardAccomodations">Accomodations</p>
@@ -309,29 +318,3 @@
       <%= f.submit "Send", class: "btn btn-primary" %>
   <% end %>
 </div>
-
-<% @transportations.each do |transportation| %>
-  <div class="modalTransportation">
-    <div class="modalTransportationAvatar">
-      <%= image_tag "user-placeholder.png", class:"avatar" %>
-    </div>
-    <div class="modalTransportationJourney">
-      <div class="modalTransportationDeparture">
-        <p><%= transportation.departure_date.strftime("%d/%m/%Y")%></p>
-        <h4><%= transportation.origin %></h4>
-        <p><%= transportation.departure_date.strftime("%H:%M:%S") %></p>
-      </div>
-      <div class="modalTransportationLocomotion">
-        <%= image_tag "user-placeholder.png", class:"avatar" %>
-      </div>
-      <div class="modalTransportationArrival">
-        <p><%= transportation.arrival_date.strftime("%d/%m/%Y")%></p>
-        <h4><%= transportation.destination %></h4>
-        <p><%= transportation.arrival_date.strftime("%H:%M:%S") %></p>
-      </div>
-    </div>
-    <div class="modalTransportationJoin">
-      <p>join button to add</p>
-    </div>
-  </div>
-<% end %>
