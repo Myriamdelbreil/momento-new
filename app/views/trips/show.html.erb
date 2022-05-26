@@ -1,15 +1,21 @@
 <div class="dashboardMain">
   <div class="dashboardBox boxInfo">
-    <h1><%= @trip.title %></h1>
-    <% unless @trip.city.nil? %>
-      <h2><%= @trip.city %></h2>
-    <% end %>
-    <% unless @trip.start_date.nil? || @trip.end_date.nil? %>
-      <p>Du: <%= @trip.start_date.strftime("%d/%m/%Y") %> au <%= @trip.end_date.strftime("%d/%m/%Y") %></p>
-    <% end %>
-    <% unless @trip.description.nil? %>
-      <p><%= @trip.description %></p>
-    <% end %>
+    <div class="infoDates">
+      <% unless @trip.start_date.nil? || @trip.end_date.nil? %>
+        <p>Du: <%= @trip.start_date.strftime("%d/%m/%Y") %> au <%= @trip.end_date.strftime("%d/%m/%Y") %></p>
+      <% end %>
+    </div>
+    <div class="infoTitle">
+      <h1><%= @trip.title %></h1>
+    </div>
+    <div class="infoDescription">
+      <% unless @trip.description.nil? %>
+        <p><%= @trip.description %></p>
+      <% end %>
+    </div>
+    <div class="infoPhoto">
+      <h1>Placeholder</h1>
+    </div>
   </div>
   <div class="dashboardBox boxTransportations">
     <p id="titleCardTransportations">Transportation</p>

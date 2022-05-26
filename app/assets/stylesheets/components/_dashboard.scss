@@ -9,6 +9,7 @@
   background-color: #F3F5FF;
 }
 
+//CSS de chaque boîte
 .dashboardBox {
   position: relative;
   background-color: white;
@@ -20,9 +21,29 @@
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 
+//CSS pour la boîte d'info et toutes ses dépendences
 .boxInfo {
   grid-area: 1/1/4/3;
+  background-color: rgb(247,206,140);
+  display: grid;
+  grid-template-rows: 1fr 2fr 2fr;
+  grid-template-columns: repeat(3, 1fr);
+}
 
+.infoDates {
+  grid-area: 1/1/2/2;
+}
+
+.infoTitle {
+  grid-area: 2/1/3/3;
+}
+
+.infoDescription {
+  grid-area: 3/1/4/3;
+}
+
+.infoPhoto {
+  grid-area: 1/3/4/4;
 }
 
 .boxTransportations {
