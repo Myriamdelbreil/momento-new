@@ -16,20 +16,18 @@
     <%= image_tag @trip.random_photo, class: "infoPhoto" %>
   </div>
   <div class="dashboardBox boxTransportations">
-    <p id="titleCardTransportations">Transportation</p>
+    <p id="titleCardTransportations">Transports</p>
     <% if @transportations.empty? %>
       <p>Add your ticket !</p>
     <% else %>
-      <p>You have booked <%= @transportations.count %> travel tickets.</p>
       <% @transportations.sort_by(&:departure_date).each do |transportation| %>
-        <p>Your next travel to <%= transportation.destination %> is in <%= ((transportation.departure_date - Time.now)/86400).to_i %> day(s)</p>
+        <p>Your next travel to <strong><%= transportation.destination %></strong> is in <%= pluralize ((transportation.departure_date - Time.now)/86400).to_i, "day" %></p>
       <% end %>
-      <p>See your next journey</p>
     <% end %>
   </div>
   <div class="dashboardBox boxAccomodations">
     <p id="titleCardAccomodations">Accomodations</p>
-    <p>You have <%= @accomodations.all.count %> accomodations in your wish list.</p>
+    <p>You have <%= pluralize @accomodations.all.count, "accomodation" %> in your wish list.</p>
     <% if @accomodations.empty? %>
       <p>Add one !</p>
     <% else %>
@@ -39,8 +37,8 @@
           <%= accomodation.title %>
           <%= accomodation.address %>
         <% end %>
-      <p>Add one or see your wishlist.</p>
       <% end %>
+      <p>Add one or see your wishlist.</p>
     <% end %>
   </div>
   <div class="dashboardBox boxExpenses">
