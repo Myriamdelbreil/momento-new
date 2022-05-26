@@ -46,3 +46,36 @@
     color: white;
   }
 }
+
+.btn-more-infos {
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  z-index: 1;
+  background: none;
+  color: rgba(0,0,0,0.4);
+  text-decoration: underline;
+  border: none;
+
+  &:hover {
+    background: none;
+  }
+}
+
+.btn-join {
+  display: inline-block;
+  font-size: 0.7rem;
+  border-radius: 50rem;
+  padding: 0.1rem 0.5rem;
+  background-color: white;
+  color: rgba($color: #000000, $alpha: 0.4);
+  border: solid 1px;
+  border-color: rgba($color: #000000, $alpha: 0.4);
+  transition: transform 0.2s;
+
+  &:hover {
+    border-color: black;
+    color: black;
+    transform: scale(1.05);
+  }
+}
