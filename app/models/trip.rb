@@ -14,4 +14,8 @@ class Trip < ApplicationRecord
   def geocoding_needed?
     will_save_change_to_city? && !will_save_change_to_latitude? && !will_save_change_to_longitude?
   end
+
+  def random_photo
+    ["Australia.png", "Egypt.png", "England.png", "Germany.png", "Italy.png", "Pise.png", "Spain.png"].sample
+  end
 end

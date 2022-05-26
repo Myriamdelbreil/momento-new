@@ -13,9 +13,7 @@
         <p><%= @trip.description %></p>
       <% end %>
     </div>
-    <div class="infoPhoto">
-      <h1>Placeholder</h1>
-    </div>
+    <%= image_tag @trip.random_photo, class: "infoPhoto" %>
   </div>
   <div class="dashboardBox boxTransportations">
     <p id="titleCardTransportations">Transportation</p>
