@@ -4,6 +4,39 @@
       <div class="modalClosePosition">
         <button type="button" class="btn-close modalCloseButton" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
+      <% @transportations.each do |transportation| %>
+        <div class="modalTransportation">
+          <div class="modalTransportationAvatar">
+            <%= image_tag "user-placeholder.png", class:"avatar" %>
+          </div>
+          <div class="modalTransportationJourney">
+            <div class="modalTransportationDeparture">
+              <div class="modalTransportationCity">
+                <h4><%= transportation.origin %></h4>
+              </div>
+              <div class="modalTransportationTime">
+                <p><%= transportation.departure_date.strftime("%d/%m/%Y")%></p>
+                <p><%= transportation.departure_date.strftime("%H:%M:%S") %></p>
+              </div>
+            </div>
+            <div class="modalTransportationLocomotion">
+              <%= image_tag "user-placeholder.png", class:"avatar" %>
+            </div>
+            <div class="modalTransportationArrival">
+              <div class="modalTransportationTime">
+                <p><%= transportation.arrival_date.strftime("%d/%m/%Y")%></p>
+                <p><%= transportation.arrival_date.strftime("%H:%M:%S") %></p>
+              </div>
+              <div class="modalTransportationCity">
+                <h4><%= transportation.destination %></h4>
+              </div>
+            </div>
+          </div>
+          <div class="modalTransportationJoin">
+            <button class="btn-join">Participate</button>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
