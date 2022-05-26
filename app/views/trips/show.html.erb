@@ -2,7 +2,7 @@
   <div class="dashboardBox boxInfo">
     <div class="infoDates">
       <% unless @trip.start_date.nil? || @trip.end_date.nil? %>
-        <p>Du: <%= @trip.start_date.strftime("%d/%m/%Y") %> au <%= @trip.end_date.strftime("%d/%m/%Y") %></p>
+        <p><%= @trip.start_date.strftime("%d/%m/%Y") %> - <%= @trip.end_date.strftime("%d/%m/%Y") %></p>
       <% end %>
     </div>
     <div class="infoTitle">

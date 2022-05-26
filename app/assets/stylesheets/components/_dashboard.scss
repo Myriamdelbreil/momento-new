@@ -30,22 +30,6 @@
   grid-template-columns: repeat(3, 1fr);
 }
 
-.infoDates {
-  grid-area: 1/1/2/2;
-}
-
-.infoTitle {
-  grid-area: 2/1/3/3;
-}
-
-.infoDescription {
-  grid-area: 3/1/4/3;
-}
-
-.infoPhoto {
-  grid-area: 1/3/4/4;
-}
-
 .boxTransportations {
   grid-area: 4/1/6/2;
   #titleCardTransportations {
@@ -95,10 +79,13 @@
 
   .dashboardBox {
     margin: 7px;
+    max-height: 25vh;
   }
 
   .boxInfo {
     grid-area: 1/1/2/3;
+    grid-template-rows: 1fr 3fr;
+    grid-template-columns: 1.6fr 1fr;
   }
 
   .boxTransportations {
