@@ -24,16 +24,12 @@
         <p>Your next travel to <strong><%= transportation.destination %></strong> is in <%= pluralize ((transportation.departure_date - Time.now)/86400).to_i, "day" %></p>
       <% end %>
     <% end %>
-<<<<<<< HEAD
-    <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#ShowTransportationModal">
-=======
     <% unless @participant.transportations == [] %>
       <button type="button" class="btn btn-light btn-sm btn-more-infos" data-bs-toggle="modal" data-bs-target="#ShowTransportationModal">
         more info
       </button>
     <% end %>
     <button type="button" class="btn btn-add" data-bs-toggle="modal" data-bs-target="#">
->>>>>>> 0c429b81ebe07baf875ba212c9bbf2893d781e78
       +
     </button>
     <%= render "./trip_boxes/transportations_modal" %>
