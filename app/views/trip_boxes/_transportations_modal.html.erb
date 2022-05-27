@@ -16,19 +16,19 @@
               </div>
               <div class="modalTransportationTime">
                 <p><%= transportation.departure_date.strftime("%d/%m/%Y")%></p>
-                <p><%= transportation.departure_date.strftime("%H:%M:%S") %></p>
+                <p><%= transportation.departure_date.strftime("%H:%M") %></p>
               </div>
             </div>
             <div class="modalTransportationLocomotion">
-              <%= image_tag "user-placeholder.png", class:"avatar" %>
+              <%= image_tag "#{transportation.mean}.png", class:"avatar" %>
             </div>
             <div class="modalTransportationArrival">
-              <div class="modalTransportationTime">
-                <p><%= transportation.arrival_date.strftime("%d/%m/%Y")%></p>
-                <p><%= transportation.arrival_date.strftime("%H:%M:%S") %></p>
-              </div>
               <div class="modalTransportationCity">
                 <h4><%= transportation.destination %></h4>
+              </div>
+              <div class="modalTransportationTime">
+                <p><%= transportation.arrival_date.strftime("%d/%m/%Y")%></p>
+                <p><%= transportation.arrival_date.strftime("%H:%M") %></p>
               </div>
             </div>
           </div>

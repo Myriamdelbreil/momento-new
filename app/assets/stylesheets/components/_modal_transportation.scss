@@ -38,6 +38,7 @@
 
 .modalTransportationArrival {
   display: flex;
+  flex-direction: row-reverse;
 }
 
 .modalTransportationJoin {
@@ -46,10 +47,36 @@
 
 .modalTransportationCity {
   margin: auto 25px;
-  font-weight: bold;
+  h4 {
+    font-weight: bold !important;
+  }
+  text-align: center;
 }
 
 .modalTransportationTime {
   margin: auto;
   text-align: center;
+}
+
+@media (max-width:600px) {
+  .modalTransportation {
+    margin-top: 50px;
+    grid-template-columns: 0.6fr 3fr 1.2fr;
+  }
+
+  .modalTransportationLocomotion {
+    margin: auto 5px;
+  }
+
+  .modalTransportationCity {
+    margin: auto;
+  }
+
+  .modalTransportationArrival {
+    display: block;
+  }
+
+  .modalTransportationDeparture {
+    display: block;
+  }
 }
