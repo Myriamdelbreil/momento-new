@@ -10,7 +10,7 @@
           <%= link_to "Sign in", new_user_session_path, class:"dropdown-item", id:"dropdown-item-avatar"%>
         <% else %>
           <%= link_to "My trips", trips_path, class: "dropdown-item", id:"dropdown-item-avatar" %>
-          <a type="button" class="dropdown-item" id="dropdown-item-avatar" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+          <a type="button" class="dropdown-item" id="dropdown-item-avatar" data-bs-toggle="modal" data-bs-target="#newTrip">
             New trip ...
           </a>
           <%= link_to "Edit account", edit_user_registration_path, class:"dropdown-item", id:"dropdown-item-avatar" %>
