@@ -1,6 +1,6 @@
 <div class="tripsIndex">
   <div class="tripsIndexBanner">
-    <% if @current_trips.count == 0 %>
+    <% if @current_trips.nil? %>
       <h1 id="indexBannerTitle">
         It's time to plan your next trip
       </h1>
