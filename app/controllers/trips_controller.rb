@@ -4,9 +4,9 @@ class TripsController < ApplicationController
     @trip = Trip.new
     @trips = Participant.where(user: @user).map(&:trip)
     @new_participant = Participant.new
-    @coming_trips = @trips.select { |trip| trip.start_date > Time.now && trip.end_date > Time.now }
-    @past_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date < Time.now }
-    @current_trips = @trips.select { |trip| trip.start_date < Time.now && trip.end_date > Time.now }
+    @coming_trips = @trips.select { |trip| trip.start_date > Date.today && trip.end_date > Date.today }
+    @past_trips = @trips.select { |trip| trip.start_date < Date.today && trip.end_date < Date.today }
+    @current_trips = @trips.select { |trip| trip.start_date <= Date.today && trip.end_date >= Date.today }
     unless @trips == []
       @markers = @trips.each do |trip|
         if trip.geocoded?

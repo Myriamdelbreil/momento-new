@@ -1,6 +1,6 @@
 <div class="tripsIndex">
   <div class="tripsIndexBanner">
-    <% if @current_trips.nil? %>
+    <% if @current_trips.nil? || @current_trips.count.zero? %>
       <h1 id="indexBannerTitle">
         It's time to plan your next trip
       </h1>
@@ -20,7 +20,7 @@
           </button>
         </div>
       <% end %>
-    <% else %>
+    <% elsif @current_trips.count > 1 %>
       <h1 id="indexBannerTitle">
         Yaaaay! You are on your trip!
       </h1>
@@ -43,7 +43,7 @@
   </nav>
   <div id="nav-tab" class="tab-content">
     <div class="tab-pane fade show active" id="coming" role="tabpanel" aria-labelledby="coming-tab">
-      <% if @coming_trips.empty? %>
+      <% if @coming_trips.empty? || @coming_trips.nil? %>
         <div class="noComingTrip" type= "button" data-bs-toggle="modal" data-bs-target="#newTrip">
           <h1>Plan your next trip now!</h1>
           <h1 class="roundPlus">+</h1>
