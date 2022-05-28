@@ -8,6 +8,6 @@ function scrollDown () {
   timelineHome.scrollIntoView();
 }
 
-const scrollButton = document.getElementById("scrollable")
-scrollButton.addEventListener("click", scrollDown)
-window.addEventListener("scroll", changeNavbarText);
+// const scrollButton = document.getElementById("scrollable")
+// scrollButton.addEventListener("click", scrollDown)
+// window.addEventListener("scroll", changeNavbarText);
