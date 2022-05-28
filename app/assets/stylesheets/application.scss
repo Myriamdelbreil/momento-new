@@ -26,11 +26,10 @@
   --transportations: #568A75;
 }
 
-// scrollbar removal
-// for Firefox
 *{ scrollbar-width: none !important }
 
-// for Chrome
 ::-webkit-scrollbar {
   width: 0px;
 }
+
+@import 'cookies_eu';

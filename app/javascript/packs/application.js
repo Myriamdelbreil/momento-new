@@ -32,3 +32,10 @@ document.addEventListener('turbolinks:load', () => {
 // = require Chart.bundle
 
 import "chartkick/chart.js"
+
+Cookies.set('foo', 'bar')
+
+import Cookies from 'js-cookie'
+
+
+require("custom/main")

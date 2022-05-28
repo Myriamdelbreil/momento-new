@@ -13,14 +13,19 @@
 
     <%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
 
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+
   </head>
 
   <body>
-
     <%= render 'shared/navbar' %>
     <div class="content-wrapper">
       <%= yield %>
+      <% if cookies[:allow_cookies].blank? %>
+        <%= render 'shared/cookies_bar' %>
+      <% end %>
     </div>
+
 
     <% if notice != nil %>
       <div class="notice flash-success alert-dismissible fade show" role="notice">
@@ -41,6 +46,5 @@
         </a>
       </div>
     <% end %>
-
   </body>
 </html>
