@@ -43,7 +43,7 @@
   </nav>
   <div id="nav-tab" class="tab-content">
     <div class="tab-pane fade show active" id="coming" role="tabpanel" aria-labelledby="coming-tab">
-      <% if @coming_trips.empty? || @coming_trips.nil? %>
+      <% if @coming_trips.nil? || @coming_trips.empty? %>
         <div class="noComingTrip" type= "button" data-bs-toggle="modal" data-bs-target="#newTrip">
           <h1>Plan your next trip now!</h1>
           <h1 class="roundPlus">+</h1>
