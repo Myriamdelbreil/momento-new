@@ -1,3 +1,6 @@
+require "browser/aliases"
+Browser::Base.include(Browser::Aliases)
+
 class TripsController < ApplicationController
   def index
     @user = current_user
@@ -7,6 +10,7 @@ class TripsController < ApplicationController
     @coming_trips = @trips.select { |trip| trip.start_date > Date.today && trip.end_date > Date.today }
     @past_trips = @trips.select { |trip| trip.start_date < Date.today && trip.end_date < Date.today }
     @current_trips = @trips.select { |trip| trip.start_date <= Date.today && trip.end_date >= Date.today }
+    @browser = Browser.new("Some User Agent")
     unless @trips == []
       @markers = @trips.each do |trip|
         if trip.geocoded?

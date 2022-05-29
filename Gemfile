@@ -70,3 +70,5 @@ gem 'flatpickr'
 gem "geocoder"
 gem "chartkick"
 gem 'cookies_eu'
+# gem 'active_device'
+gem "browser", require: "browser/browser"
