@@ -157,3 +157,54 @@
     display: none;
   }
 }
+
+// iphone
+@media (min-width:769px) and (max-width:992px) {
+  .timeline-div-arrow-left {
+    display: none !important;
+  }
+
+  .div-arrow-rounded-left {
+    display: none !important;
+  }
+
+  .div-arrow-rounded {
+    display: none !important;
+  }
+
+  .div-arrow-rounded-right {
+    display: none !important;
+  }
+
+  .content-timeline-left {
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .content-timeline-right {
+    border: none;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .timeline-row {
+    width: 100%;
+    margin: 0;
+  }
+  .timeline-card-arrow {
+    width: 300px;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+
+  }
+  .content-timeline-left p {
+    display: none;
+  }
+
+  .content-timeline-right p {
+    display: none;
+  }
+}
