@@ -101,8 +101,8 @@
   <%= simple_form_for [@trip, @new_transportation] do |f| %>
     <%= f.input :origin, placeholder:"Paris, Gare de Lyon,...", label:"From..." %>
     <%= f.input :destination, placeholder:"Madrid, London Heathrow,...", label:"To..." %>
-    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {id: "range_start"}, placeholder:"21/03/2022"%>
-    <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {id: "range_end"}, placeholder:"21/03/2022"%>
+    <%= f.input :departure_date, label:"When are you leaving?", as: :string, required: false, input_html: {id: "range_start_2"}, placeholder:"21/03/2022"%>
+    <%= f.input :arrival_date, label:"When are you arriving?", as: :string, required: false, input_html: {id: "range_end_2"}, placeholder:"21/03/2022"%>
     <%= f.input :mean, label:"Avion, train, voiture?", as: :select, collection: Transportation::CATEGORIES %>
     <%= f.input :price, label:"Prix", placeholder:"100 €" %>
     <%= f.submit "Let's go" %>
@@ -204,8 +204,8 @@
   <h1>Form new event</h1>
   <%= simple_form_for [@trip, @new_event] do |f| %>
     <%= f.input :description, placeholder: "Cooking class,...", label: "Name" %>
-    <%= f.input :start_date, as: :string, required: false, input_html: {id: "range_start"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
-    <%= f.input :end_date, as: :string, required: false, input_html: {id: "range_end"}, placeholder:"21/03/2022 at 09:00AM", label: "Ends when?" %>
+    <%= f.input :start_date, as: :string, required: false, input_html: {id: "range_start_3"}, placeholder:"21/03/2022 at 09:00AM", label: "Starts when?" %>
+    <%= f.input :end_date, as: :string, required: false, input_html: {id: "range_end_3"}, placeholder:"21/03/2022 at 09:00AM", label: "Ends when?" %>
     <%= f.input :category, as: :select, collection: Event::ACTIVITIES%>
     <%= f.submit "Let's go" %>
   <% end %>

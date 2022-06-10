@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_05_24_165647) do
+ActiveRecord::Schema.define(version: 2022_05_29_211238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,10 +91,10 @@ ActiveRecord::Schema.define(version: 2022_05_24_165647) do
     t.bigint "trip_id", null: false
     t.string "description"
     t.datetime "start_date"
-    t.string "end_date"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "end_date"
     t.index ["participant_id"], name: "index_events_on_participant_id"
     t.index ["trip_id"], name: "index_events_on_trip_id"
   end

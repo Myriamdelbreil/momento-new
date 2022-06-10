@@ -18,6 +18,9 @@ import "bootstrap"
 
 import { initFlatpickr } from "../plugins/flatpickr";
 import { initFlatpickr2 } from "../plugins/flatpickr";
+import { initFlatpickr3 } from "../plugins/flatpickr";
+import { initFlatpickr4 } from "../plugins/flatpickr";
+import {  } from "../plugins/flatpickr";
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -26,6 +29,14 @@ document.addEventListener('turbolinks:load', () => {
 
 document.addEventListener('turbolinks:load', () => {
   initFlatpickr2();
+});
+
+document.addEventListener('turbolinks:load', () => {
+  initFlatpickr3();
+});
+
+document.addEventListener('turbolinks:load', () => {
+  initFlatpickr4();
 });
 
 // = require chartkick
